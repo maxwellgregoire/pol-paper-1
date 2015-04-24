@@ -1,27 +1,22 @@
-\documentclass[12pt,letterpaper]{article}
-\usepackage[utf8]{inputenc}
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage{amssymb}
-\usepackage{cancel}
-\usepackage[hmargin=2cm,vmargin=2cm]{geometry}
+\documentclass[twocolumn, prl,showpacs,superscriptaddress]{revtex4-1}   % use preprint or twocolumn
+%\usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
+%\geometry{letterpaper}                   % ... or a4paper or a5paper or ...
+%\geometry{landscape}                % Activate for for rotated page geometry
+%\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
 \usepackage{graphicx}
-\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{bm}% bold math
 \usepackage{verbatim}
+\usepackage{amsfonts}
+\usepackage{cancel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
 \usepackage{setspace}
-\pagestyle{fancy}
 
-\lhead{}
-\chead{}
-\rhead{}
-\lfoot{}
-\cfoot{\thepage}
-\rfoot{}
-\title{Improved Absolute and Ratio Measurements of Ground-State, Static, Electric-Dipole Polarizabilities of Cs, Rb, and K using Atom Interferometry}
-\date{}
-\author{}
-\renewcommand{\headrulewidth}{0.4pt}
-\renewcommand{\footrulewidth}{0.4pt}
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
 
 \newcommand{\proofend}{\mbox{ }\hfill$\Box$\\}
 \newcommand{\ddf}[2]{\frac{\mathrm{d} #1}{\mathrm{d} #2}}
@@ -36,20 +31,50 @@
 \newcommand{\figref}[1]{Figure \ref{#1}}
 \newcommand{\eqnref}[1]{Eqn \ref{#1}}
 
-\def\pnum{p_{\nu_{\mu}}}
-\def\pnue{p_{\vec \nu_{e}}}
-
-\def\upp{\uparrow}
-\def\dwn{\downarrow}
-\def\dl{\displaystyle}
-\def\ans{\textbf{Solution:\\}}
-
 \begin{document}
+
+\title{Improved Absolute and Ratio Measurements of Ground-State, Static, Electric-Dipole Polarizabilities of Cs, Rb, and K using Atom Interferometry}
+
+\affiliation{Department of Physics, University of Arizona, Tucson, AZ 85721}
+\affiliation{College of Optical Sciences, University of Arizona, Tucson, AZ 85721}
+\author{Maxwell D. Gregoire}
+\affiliation{Department of Physics, University of Arizona, Tucson, AZ 85721}
+\author{Ivan Hromada}
+\affiliation{Department of Physics, University of Arizona, Tucson, AZ 85721}
+\author{Raisa Trubko}
+\affiliation{College of Optical Sciences, University of Arizona, Tucson, AZ 85721}
+\author{Alexander D. Cronin}
+\affiliation{Department of Physics, University of Arizona, Tucson, AZ 85721}
+\affiliation{College of Optical Sciences, University of Arizona, Tucson, AZ 85721}
+\email{cronin@physics.arizona.edu}
+\homepage{http://www.atomwave.org}
+
+\date{\today}
+
+
+
+
+
+\begin{abstract}
+We report absolute and ratio measurements of ground-state, static, electric dipole polarizabilities of Cs, Rb, and K atoms using a Mach-Zehnder atom interferometer with an electric field gradient. Our measurements provide benchmark tests for atomic structure calculations, and our measurement of $\alpha_Cs$ helps with interpretation of parity non-conservation data. We measured polarizabilities of $\alpha_Cs = ????$, $\alpha_Rb = ????$, and $\alpha_K = ????$ and ratios of $\alpha_Cs:\alpha_Rb = ????"$, $\alpha_Cs:\alpha_K = ????"$, and $\alpha_Rb:\alpha_K = ????"$. We are the first to measure Cs polarizability with atom interferometry because we were able to measure the beam velocity distribution without obtaining resolved diffraction, which is difficult to obtain with Cs. To measure the beam velocity distribution, we used phase choppers, which are two separated electric field gradients rapidly pulsed on and off that modify the interferometer contrast as a function of velocity distribution and pulse frequency. We also increased the precision of our measurements with more advanced modeling of the beam profile and new understanding of systematic errors.
+\end{abstract}
+
+
+
+
+
 \maketitle
 
-\section{Abstract}
+Sample text (see Figure \ref{awesomeface})\cite{Hro14}.
 
-We report absolute and ratio measurements of ground-state, static, electric dipole polarizabilities of Cs, Rb, and K atoms using a Mach-Zehnder atom interferometer with an electric field gradient. Our measurements provide benchmark tests for atomic structure calculations, and our measurement of $\alpha_Cs$ helps with interpretation of parity non-conservation data. We measured polarizabilities of $\alpha_Cs = ????$, $\alpha_Rb = ????$, and $\alpha_K = ????$ and ratios of $\alpha_Cs:\alpha_Rb = ????"$, $\alpha_Cs:\alpha_K = ????"$, and $\alpha_Rb:\alpha_K = ????"$. We are the first to measure Cs polarizability with atom interferometry because we were able to measure the beam velocity distribution without obtaining resolved diffraction, which is difficult to obtain with Cs. To measure the beam velocity distribution, we used phase choppers, which are two separated electric field gradients rapidly pulsed on and off that modify the interferometer contrast as a function of velocity distribution and pulse frequency. We also increased the precision of our measurements with more advanced modeling of the beam profile and new understanding of systematic errors.
+\begin{figure}
+\includegraphics[scale=0.15]{awesomeface_planet_wallpaper_2.jpg}
+\caption{\label{awesomeface}(Color online) Om nom nom.}
+\end{figure}
+
+
+
+
 
 \section{Introduction}
 
@@ -168,8 +193,8 @@ Taking all these effects into account, our more complete model for contrast loss
 	%\left|
 		\frac{1}{2} \sum_{j=-1,1}
 		f_c \int_0^{1/f_c} 
-		\int_{w_{1}/2}^{w_{1}/2}
-		\int_{w_{2}/2}^{w_{2}/2}
+		\int_{w_1/2}^{w_1/2}
+		\int_{w_2/2}^{w_2/2}
 		\int_0^{\infty} 
 		P(v)
 		D_j(x_1, x_2, v)
@@ -181,7 +206,7 @@ Taking all these effects into account, our more complete model for contrast loss
 	%\right|
 	\label{CvCF}
 \end{align}
-To account for beam width and divergence, we integrate over positions $x1$ and $x2$ in the two collimating slits, which have widths $w1$ and $w2$. $D_j(x_1, x_2, v)$ is the probability that a given atom will hit the detector, $C_{env}(t)$ represents the longitudinal motion of the interference pattern as the choppers turn on and off, and $\Phi_{sag}(v)$ is the Sagnac phase [ref for that]. The chopper-induced phases $\Phi_{ci,j}(v,x_1,x_2,t)$ are adapted from \eqnref{deltaPhasePillars}. % and given by
+To account for beam width and divergence, we integrate over positions $x_1$ and $x_2$ in the two collimating slits, which have widths $w_1$ and $w_2$. $D_j(x_1, x_2, v)$ is the probability that a given atom will hit the detector, $C_{env}(t)$ represents the longitudinal motion of the interference pattern as the choppers turn on and off, and $\Phi_{sag}(v)$ is the Sagnac phase [ref for that]. The chopper-induced phases $\Phi_{ci,j}(v,x_1,x_2,t)$ are adapted from \eqnref{deltaPhasePillars}. % and given by
 We measure $\Phi_{ci,j}(v,x_1,x_2,t)$ by turning the choppers on and off every 25 seconds and observing the applied phase shift.
 
 \begin{comment}
@@ -238,7 +263,44 @@ We measure the velocity distribution between every 4 scans of the pillars across
 
 \section{Results and Discussion}
 
-(FIGURE 6) shows our absolute measurements of Cs, Rb, and K polarizability and their statistical and systematic error. The error reported is the standard error of the mean. (FIGURE 6) also shows $\chi^2/(\text{degree of freedom})$ for each measurement; we can see that we are operating near the shot-noise limit. (FIGURE 7) shows our ratio measurement results. Because we used the same apparatus for each absolute measurement, we can say that the non-velocity-dependent systematic errors mentioned previously do not contribute to the ratio measurement errors. Velocity-dependent systematic errors contribute to the extent that the average velocity was different between atoms. \textit{We should add a table showing average velocities for each atom and the (F.U. in pol)/dv for each velocity-dependent systematic error. These might be separate tables. This might require more 24+ hr number crunching, but I think it's worth it} 
+Table ASDFASDFASDF shows our absolute measurements of Cs, Rb, and K polarizability and their statistical and systematic error. The error reported is the standard error of the mean. (FIGURE 6) also shows $\chi^2/(\text{degree of freedom})$ for each measurement; we can see that we are operating near the shot-noise limit. 
+
+\begingroup
+\begin{table}
+\caption{\label{tableAbs}Absolute measurements of Cs, Rb, and K static, ground-state polarizabilities.}
+\begin{center}
+\begin{tabular}{l c c}
+\hline\hline
+Atom & $\alpha$(stat.)(sys.) & $\chi^2/DoF$ \\
+\hline
+Cs & ???? & ???? \\
+Rb & ???? & ???? \\
+K  & ???? & ???? \\
+\hline\hline
+\end{tabular}
+\end{center}
+\end{table}
+\endgroup
+
+(FIGURE 7) shows our ratio measurement results. Because we used the same apparatus for each absolute measurement, we can say that the non-velocity-dependent systematic errors mentioned previously do not contribute to the ratio measurement errors. Velocity-dependent systematic errors contribute to the extent that the average velocity was different between atoms. \textit{We should add a table showing average velocities for each atom and the (F.U. in pol)/dv for each velocity-dependent systematic error. These might be separate tables. This might require more 24+ hr number crunching, but I think it's worth it} 
+
+\begingroup
+\begin{table}
+\caption{\label{tableRatio}Ratio measurements of Cs, Rb, and K static, ground-state polarizabilities.}
+\begin{center}
+\begin{tabular}{l c}
+\hline\hline
+Atoms & ratio(stat.) \\
+\hline
+Cs:Rb & ???? \\
+Cs:K  & ???? \\
+Rb:K  & ???? \\
+\hline\hline
+\end{tabular}
+\end{center}
+\end{table}
+\endgroup
+
 
 \section{Outlook}
 
@@ -253,11 +315,12 @@ We are also exploring electron-impact ionization schemes for atom detection, whi
 
 
 
-\singlespace
-\pagebreak
-\begin{thebibliography}{9}
-    \bibitem{test}
-        This is a bibliography entry
-\end{thebibliography}
-\end{document}
 
+
+This work is supported by NSF Grant No. 1306308 and a NIST PMG. M.D.G. and R.T. are grateful for NSF GRFP Grant No. DGE-1143953 for support. 
+
+
+\bibliography{references}
+
+
+\end{document}  
