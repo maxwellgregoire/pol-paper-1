@@ -203,11 +203,11 @@ where $\theta_g$ is the tilt of the grating bars with respect to vertical. Howev
 
 \begingroup
 \begin{table}
-\caption{\label{velPolError}Error budget for measurements of $v_0$ and $r$. Some error sources are expressed as fractional uncertainties, some as absolute uncertainties.}
+\caption{\label{tableVelError}Systematic error budget for measurements of $v_0$ and $r$. Some error sources are expressed as fractional uncertainties, some as absolute uncertainties.}
 \begin{center}
 \begin{tabular}{l c c c}
 \hline\hline
-Error Source $x$ & $\Delta x/x$ (ppt) & $\Delta v_0/v_0$ (ppt) & $\Delta r/r$ (ppt) \\
+Error Source $x$ & $\Delta x/x$ & $\Delta v_0/v_0 \times 1000$ & $\Delta r/r \times 1000$ \\
 \hline
 $w_1$ & 260 & 0.05 & 1.0 \\
 $w_2$ & 260 & 0.09 & 6.6 \\
@@ -218,12 +218,12 @@ $z_{c1,c2}$ & .20 & 0.20 & 0.1 \\
 $\Omega_{lab}$ & 62 & 0.003 & 1.2 \\
 $C_{env}(t)$ width & 100 & 0.06 & 2.7 \\
 \hline
-Error Source $x$ & $\Delta x$ & $\Delta v_0/v_0$ (ppt) & $\Delta r/r$ (ppt) \\
+Error Source $x$ & $\Delta x$ & $\Delta v_0/v_0 \times 1000$ & $\Delta r/r \times 1000$ \\
 \hline
 $\Delta x_{detector}$ & 20 $\mu$m & 0.006 & 0.15 \\
 $\Delta L$ & 50 $\mu$m & 0.098 & 6.0 \\
 \hline
-Total (ppt) & & $\sigv$ & $\sigr$ \\
+Total Sys. (ppt) & & $\sigv$ & $\sigr$ \\
 \hline\hline
 \end{tabular}
 \end{center}
@@ -253,28 +253,72 @@ Taking all these effects into account, our more complete model for contrast loss
 \end{align}
 To account for beam width and divergence, we integrate over positions $x_1$ and $x_2$ in the two collimating slits, which have widths $w_1$ and $w_2$. $D_j(x_1, x_2, v)$ is the probability that a given atom will hit the detector, and $C_{env}(t)$ represents the longitudinal motion of the interference pattern as the choppers turn on and off (see [lens paper] for how we determined $C_{env}(t)$ experimentally). $\Phi_{sag}(v)$ is the Sagnac phase, or the phase shift induced by the Earth's rotation[ref for that], and is given by
 \begin{align}
-	\Phi_{sag}(v) = \frac{4\pi L_2^2\Omega}{d_g v}
+	\Phi_{sag}(v) = \frac{4\pi L_2^2\Omega_{lab}}{d_g v}
 	\label{phiSag}
 \end{align}
-The chopper-induced phases $\Phi_{ci,j}(v,x_1,x_2,t)$ are adapted from \eqnref{deltaPhasePillars}. 
-We measure $\Phi_{ci,j}(v,x_1,x_2)$ indirectly by turning chopper $i$ on and off with a 50 second period and observing the applied phase shift. We then solve for $\Phi_{ci,j}(v,x_1,x_2)$
+The rotation rate of the interferometer, $\Omega_{lab}$, is the product of the Earth's rotation rate and the sine of the lab's lattitude.
+During times $t$ when the choppers are on, the chopper-induced phases $\Phi_{ci,j}(v,x_1,x_2)$ are adapted from \eqnref{deltaPhasePillars} and given by
+\begin{align}
+	\Phi_{c1,j}(v,x_1,x_2) = \frac{A_{c1}}{v}j \times \nonumber \\
+	\left(
+		\frac{1}{b_{c1}^2 -
+			(x_{c1} + \frac{(x_2-x_1)}{z_{s1,s2}}z_{s1,c1} + x_2 + j\theta_d z_{g1,c1})^2
+		}
+		\right. \nonumber \\ - \left.
+		\frac{1}{b_{c1}^2 -
+			(x_{c1} + \frac{(x_2-x_1)}{z_{s1,s2}}z_{s1,c1} + x_2)^2
+		}
+	\right)
+	\nonumber \\ 
+	\nonumber \\	
+	\Phi_{c2,j}(v,x_1,x_2) = \frac{A_{c1}}{v}j \times \nonumber \\
+	\left(
+		\frac{1}{b_{c2}^2 -
+			(x_{c2} - \frac{(x_2-x_1)}{z_{s1,s2}}z_{s1,c2} - x_2 - j\theta_d z_{g1,g2})^2
+		}
+		\right. \nonumber \\ - \left.
+		\frac{1}{b_{c2}^2 -
+			(x_{c2} - \frac{(x_2-x_1)}{z_{s1,s2}}z_{s1,c2} - x_2 - j\theta_d z_{g2,c2})^2
+		}
+	\right)
+	\label{phic1c2}
+\end{align}
+In the above equations, subscripts $sn$ and $gn$ on longitudinal distances $z$ represent collimating slit $n$ and grating $n$, respectively. $A_{c1}$ and $A_{c2}$ are undetermined constants that represent $\lambda_{ci}^2 \alpha / \pi \epsilon_0^2 \hbar$ from \eqnref{accumPhasePillars}. 
 
+Instead of requiring accurate knowledge of the chopper voltages and geometries, we measure $A_{ci}$ indirectly. We turn chopper $i$ on and off with a 50 second period to observe the applied phase shift $\Delta\Phi = \Phi_{c1,on} - \Phi_{ref}$ and then solve for $A_{ci}$. When chopper $i$ is off, we observe the reference phase and contrast 
+\begin{align}
+	C_{ref}e^{\Phi_{ref}} = 
+		C_0e^{\Phi_0} \frac{1}{2} \sum_{j=-1,1}
+		\int_0^{\infty}
+		\int_{w_1/2}^{w_1/2}
+		\int_{w_2/2}^{w_2/2} 
+		\nonumber \\
+		P(v) e^{\Phi_{sag}(v) + \Phi_{accel}(v) + \Phi_{sep,j}(v)} 
+		dv
+	\label{CPChoppersRef}
+\end{align}
+where $C_0$ is the contrast that would be observed in the absence of $\Phi_{sag}(v)$, $\Phi_{accel}(v)$, and $\Phi_{sep}(v)$, and $\Phi_0$ is an arbitrary phase constant. When chopper $i$ is on, we instead observe
+\begin{align}
+	C_{ci,on}e^{\Phi_{ci,on}} = 
+		C_0e^{\Phi_0} \frac{1}{2} \sum_{j=-1,1}
+		\int_0^{\infty}
+		\int_{w_1/2}^{w_1/2}
+		\int_{w_2/2}^{w_2/2} 
+		\nonumber \\
+		P(v) e^{\Phi_{ci,j}(v,x_1,x_2) + \Phi_{sag}(v) + \Phi_{accel}(v) + \Phi_{sep,j}(v)} 
+		dv
+	\label{CPChoppersOn}
+\end{align}
 
-
-
-BLARG
-
-
-
-
-the choppers on and off every 25 seconds and observing the applied phase shift. For tutorial purposes, \eqnref{CvCF} includes $\Phi_{sep}$ and $\Phi_{accel}$ even though we have tuned our apparatus so that we need not include them in our analysis. \figref{CvCFExample} shows an example of a $C/C_{ref}$ vs $f_c$ measurement.
+\figref{CvCFExample} shows an example of a $C/C_{ref}$ vs $f_c$ measurement. 
+For tutorial purposes, Eqns. \eqref{CvCF}, \eqref{CPChoppersRef}, and \eqref{CPChoppersOn} include $\Phi_{sep}$ and $\Phi_{accel}$ even though we have tuned our apparatus so that we need not include them in our analysis.
 
 \begin{figure}
 \includegraphics[width=\linewidth,keepaspectratio]{CvCF_150420_o.pdf}
 \caption{\label{CvCFExample}(Color online) An example of a measurement of contrast loss vs. phase chopper frequency for a Cs beam.}
 \end{figure}
 	
-The error budget for velocity distribution measurement is given in Table \ref{velPolError}. The values for total $\Delta v_0/v_0$ and $\Delta r/r$ are propagated forward as terms in the polarizability measurement error budget.
+The error budget for velocity distribution measurement is given in Table \ref{tableVelError}. The measured values of $v_0$ and $r$ also have statistical error in addition to uncertainty in the fit of measured $C/C_{ref}(f_c)$ to the model. Uncertainty in the measurement of $\Delta\Phi = \Phi_{c1,on} - \Phi_{ref}$ leads to uncertainty in $A_{ci}$, which in turn propagates forward as additional uncertainty in $v_0$ and $r$.
 
 \subsection{Polarizability Measurement}
 
@@ -283,16 +327,8 @@ The error budget for velocity distribution measurement is given in Table \ref{ve
 \caption{\label{dPvMPExample}(Color online) An example of a measurement of phase shift vs lateral position of the pillars for a Rb beam.}
 \end{figure}
 
-We measure the atoms' polarizability by scanning the gap between two parallel, oppositely charged, $1/2$-inch pillars across the beam, turning the field on and off as it scans, to observe the phase shift $\Delta\Phi = \Phi_{\vec{E} on} - \Phi_{ref}$ applied by the pillars as a function $x_b$ (see an example in \figref{dPvMPExample}). When the pillars are off, we observe the phase and contrast
-\begin{align}
-	C_{ref}e^{\Phi_{ref}} = 
-		C_0e^{\Phi_0}
-		\int_0^{\infty} P(v) 
-		e^{\Phi_{sag}(v) + \Phi_{accel}(v) + \Phi_{sep,j}(v)} 
-		dv
-	\label{CPRef}
-\end{align}
-where $C_0$ is the contrast that would be observed in the absence of $\Phi_{sag}(v)$, $\Phi_{accel}(v)$, and $\Phi_{sep}(v)$, and $\Phi_0$ is an arbitrary phase constant. When the pillars are on, we instead observe
+We measure the atoms' polarizability by scanning the gap between two parallel, oppositely charged, $1/2$-inch pillars across the beam, turning the field on and off as it scans, to observe the phase shift $\Delta\Phi = \Phi_{pillars,on} - \Phi_{ref}$ applied by the pillars as a function $x_b$ (see an example in \figref{dPvMPExample}). $Phi_{ref}$ is once again the reference phase and contrast observed when there are no polarizing electric fields present.
+When the pillars are on, we instead observe
 \begin{align}
 	C_{\vec{E}\textit{ on}}e^{\Phi_{\vec{E}\textit{ on}}} = 
 		C_0e^{\Phi_0}		
@@ -303,14 +339,14 @@ where $C_0$ is the contrast that would be observed in the absence of $\Phi_{sag}
 			\Phi_{sag}(v) + \Phi_{accel}(v) + \Phi_{sep,j}(v)
 		} 
 		dv
-	\label{CPEOn}
+	\label{CPPolesEOn}
 \end{align}
 We determine $x_b$ by finding the pillars position for which the phase shift is null. This eliminates the error in our previous measurements associated with measuring the distance between the beam and the physical ground plane [HRL10].
 Because $\Phi_{\vec{E}}$ depends on $\alpha$, we can measure $\alpha$ by fitting our model of $\Delta\Phi(x)$ to the data.
 
 \begingroup
 \begin{table}
-\caption{\label{tablePolError}Error budget for polarizability measurements. Some error sources are expressed as fractional uncertainties, some as absolute uncertainties.}
+\caption{\label{tablePolError}Error budget for polarizability measurements. The uncertainties in knowledge of $v_0$ and $r$ are propagated forward from Table \ref{tableVelError}. Some error sources are expressed as fractional uncertainties, some as absolute uncertainties.}
 \begin{center}
 \begin{tabular}{l c c}
 \hline\hline
@@ -322,14 +358,14 @@ $a_{pillars}$ & 0.25 & 0.7 \\
 $R_{pillars}$ & 0.16 & 0.07 \\
 $v_0$ & $\sigv$ & 0.56 \\
 $r$ & $\sigr$ & 0.28 \\
-$z_{grating 1,pillars}$ & 0.3 & 0.6 \\
+$z_{g1,pillars}$ & 0.3 & 0.6 \\
 \hline
 Error Source $x$ & $\Delta x$ & $\Delta\alpha/\alpha$ (ppt) \\
 \hline
 dimer fraction & 0.02 & 0.46 \\
 $\Delta L$ & 50 $\mu$m & 0.16 \\
 \hline
-Total (ppt) & & 1.9 \\
+Total Sys. (ppt) & & 1.9 \\
 \hline\hline
 \end{tabular}
 \end{center}
@@ -340,9 +376,11 @@ The error budget for the absolute polarizability measurements is given in Table 
 
 We constructed the new pillars using steel rods, the widths of which were accurately known to $1 \mu \text{m}$. This reduced the contribution to $\Delta\alpha/\alpha$ from uncertainty in pillars radius by about a factor of 10. The new pillars have a virtual ground plane between then rather than consisting of one pillar and a physical ground plane as they did in our previous work; we found that being able to measure the phase shift with the beam on both sides of the ground plane eliminated the need to consider $\Phi_{sag}$. 
 
-It is important to note that we also don't need to consider $\Phi_{accel}$ in our polarizability analysis as well as in our velocity distribution analysis because the grating bars are sufficiently vertical. Therefore, $\Phi_{sag}$, $\Phi_{accel}$, and $\Phi_{sep}$ are included in Eqns. \eqref{CPRef} and \eqref{CPEOn} for tutorial purposes only--our result is unaffected if we remove them.
-
 We reduced some error contributions simply by measuring things more carefully. We reduced $\Delta\alpha/\alpha$ due to uncertainty in the pillars' voltage by a factor of 3 by independently calibrating our voltage supplies. We also reduced $\Delta\alpha/\alpha$ due to uncertainty in distance between the pillars and the effective ground plane by sweeping the pillars across the atom beam and observing how far the pillars traveled between points at which the atom beam half-eclipsed each pillar. We were able to measure the distance between the first grating and the pillars to 1/4 mm accuracy rather than 2 mm accuracy. 
+
+It is important to note that we also don't need to consider $\Phi_{accel}$ in our polarizability analysis as well as in our velocity distribution analysis because the grating bars are sufficiently vertical. Therefore, $\Phi_{sag}$, $\Phi_{accel}$, and $\Phi_{sep}$ are included in \eqnref{CPPolesEOn} for tutorial purposes only--our result is unaffected if we remove them.
+
+Additionally, we found that modeling the beam's thickness and divergence was unnecessary for analysis of polarizability data unless $|\Delta L|$ exceeds about 100 $\mu$m. Because we keep $\Delta L$ close to 0, we only need to integrate over velocity in our analysis.
 
 \subsection{Data Analysis}
 
