@@ -15,6 +15,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage{setspace}
+\usepackage[export]{adjustbox}
 
 \DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
 
@@ -34,14 +35,19 @@
 \newcommand{\ak}{\alpha_{\textrm{K}}}
 \newcommand{\arb}{\alpha_{\textrm{Rb}}}
 \newcommand{\acs}{\alpha_{\textrm{Cs}}}
+\newcommand{\acore}{\alpha_{\textrm{core}}}
+\newcommand{\atail}{\alpha_{\textrm{tail}}}
 
-\newcommand{\polK}{43.15(2)(8)}
-\newcommand{\polRb}{47.50(3)(9)}
-\newcommand{\polCs}{59.51(3)(11)}
+\newcommand{\polK}{43.20(2)(8)}
+\newcommand{\polRb}{47.55(3)(9)}
+\newcommand{\polCs}{59.58(3)(11)}
+\newcommand{\polKSysOnly}{43.20(8)}
+\newcommand{\polRbSysOnly}{47.55(9)}
+\newcommand{\polCsSysOnly}{59.58(11)}
 
-\newcommand{\ratRbK}{1.1008(10)}
-\newcommand{\ratCsK}{1.3791(9)}
-\newcommand{\ratCsRb}{1.2528(11)}
+\newcommand{\ratRbK}{1.1007(9)}
+\newcommand{\ratCsK}{1.3792(9)}
+\newcommand{\ratCsRb}{1.2530(10)}
 
 \newcommand{\sigv}{0.28}
 \newcommand{\sigr}{11}
@@ -79,7 +85,7 @@
 
 
 \begin{abstract}
-We measured the ground-state static electric-dipole polarizabilities of Cs, Rb, and K atoms using a three-nanograting Mach-Zehnder atom beam interferometer.  Our measurements provide benchmark tests for atomic structure calculations and thus test the underlying theory used to interpret atomic parity non-conservations experiments.  We measured $\acs = 4\pi\epsilon_0 \times 59.51(11) \AA^3$, $\arb = 4\pi\epsilon_0 \times 47.48(8) \AA^3$, and $\ak = 4\pi\epsilon_0 \times 43.10(8)\AA^3$.   We report ratios of polarizabilities $\acs/\arb = \ratCsRb$, $\acs/\ak = \ratCsK$, and $\arb/\ak = \ratRbK$ with smaller fractional uncertainty because several sources of systematic error are common mode and thus do not affect our measurements of polarizability ratios.  Because heavy atoms such as Cs have shorter de Broglie wavelengths and thus small diffraction angles, we developed measurement methods that do not require resolved atom diffraction patterns in order to measure atomic polarizabilities.  We used phase choppers to measure atomic beam velocity distributions, and we used electric field gradients to induce atom interference fringe phase shifts proportional to atomic polarizability.
+We measured the ground-state static electric-dipole polarizabilities of Cs, Rb, and K atoms using a three-nanograting Mach-Zehnder atom beam interferometer.  Our measurements provide benchmark tests for atomic structure calculations and thus test the underlying theory used to interpret atomic parity non-conservations experiments.  We measured $\acs = 4\pi\epsilon_0 \times \polCsSysOnly \AA^3$, $\arb = 4\pi\epsilon_0 \times \polRbSysOnly \AA^3$, and $\ak = 4\pi\epsilon_0 \times \polKSysOnly \AA^3$.   We report ratios of polarizabilities $\acs/\arb = \ratCsRb$, $\acs/\ak = \ratCsK$, and $\arb/\ak = \ratRbK$ with smaller fractional uncertainty because several sources of systematic error are common mode and thus do not affect our measurements of polarizability ratios.  Because heavy atoms such as Cs have shorter de Broglie wavelengths and thus small diffraction angles, we developed measurement methods that do not require resolved atom diffraction patterns in order to measure atomic polarizabilities.  We used phase choppers to measure atomic beam velocity distributions, and we used electric field gradients to induce atom interference fringe phase shifts proportional to atomic polarizability.
 \end{abstract}
 
 
@@ -120,15 +126,30 @@ balance technique \cite{Salop1961,Molof1974}, and, most recently, time-of-flight
 A schematic diagram of the three-grating Mach-Zehnder atom beam interferometer we use to make our measurements is shown in \figref{IFMDiagram}. We use a thermal, supersonic atom beam \cite{Scoles} seeded with a mixture of 85\% He and 15\% Ar gas that carries Cs, Rb, and K atoms at approximately 1800 m/s. 
 The atoms pass through two collimating slits and then through three silicon nitride nano-gratings each with period $d_g = 100$ nm. We detect the atoms with a 100 $\mu$m-wide platinum wire Langmuir-Taylor detector \cite{Delhuille2002}.
 
-The first two gratings form an interference pattern of period $d_g$ at the position of the third grating. By scanning the third grating in the $\pm x$ direction (as defined in \figref{IFMDiagram}), we can cycle between admitting and blocking the interference maxima and thus probe the interference pattern by observing changes in atom flux. In this manner, we observe interference fringes for Cs, Rb, and K using the same collimating slits, gratings, and detector.
+The first two gratings form an interference pattern of period $d_g$ at the position of the third grating. By scanning the third grating in the $\pm x$ direction (as defined in \figref{IFMDiagram}), we can cycle between admitting and blocking the interference maxima and thus probe the interference pattern by observing changes in atom flux. In this manner, we observe interference fringes for Cs, Rb, and K using the same collimating slits, gratings, and detector. Changes in $x$ position of the fringes are described by changes in phase $\Phi$ according to $\Delta\Phi = 2\pi(\Delta x)/d_g$. The resolution of the fringe pattern is referred to as contrast $C$ and defined in terms of atom flux maxima and minima as
+\begin{align}
+	C = \frac{(\mathrm{max}) - (\mathrm{min})}{(\mathrm{max}) + (\mathrm{min})}
+	\label{contrastDef}
+\end{align}
 
-We measure static polarizability $\alpha$ by polarizing the atoms with a non-uniform electric field created by two oppositely charged pillars parallel with the $y$ axis, indicated in blue in \figref{IFMDiagram}. The field shifts the phase of a single atom with velocity $v$ by an amount proportional to $\alpha/v^2$. We measure $v$ using phase choppers, which are charged wires parallel with the $y$ axis held near and parallel to grounded planes, indicated in green in \figref{IFMDiagram}. The phase choppers use the same field geometry as the pillars to apply a $\pm\pi$ phase shift to the atoms. In this section, we will explain how that field geometry induces phase shifts and how we use those fields to measure velocity and, thereby, polarizability. 
+For a simple, single-atom interferometer with only two paths, we can shift the phase by adjusting the optical path length difference between those paths. The atom acquires phase by passing through a polarizing electric field $\vec{E}$--the field shifts the atom's energy by $U_{Stark} = -\frac{1}{2}\alpha\abs{\vec{E}}^2$, where $\alpha$ is the atom's static polarizability. Since $U_{Stark} \ll E_{kinetic}$, we can use the WKB approximation to say
+\begin{align}
+	\Delta\Phi = \Phi_1 - \Phi_2 =
+	\frac{1}{\hbar v} \int_{\Gamma_1} \frac{\alpha}{2}|\vec{E}|^2 d\Gamma_1 -
+	\frac{1}{\hbar v} \int_{\Gamma_2} \frac{\alpha}{2}|\vec{E}|^2 d\Gamma_2
+	\label{deltaPhaseGeneral}
+\end{align}
+where $\Gamma_1$ and $\Gamma_2$ represent the two different paths and $v$ is the atom's velocity. By passing the atoms in the interferometer through a known, non-uniform $\vec{E}$ and measuring $v$, we can measure $\alpha$.
+
+The atoms in the beam do not all have the same velocity $v$ and therefore do not all undergo the same $\vec{E}$-induced phase shifts $\Delta\Phi$. Furthermore, the interferometers on the + side and - side of the beamline receive different phase shifts due to nonlinearity in $\vec{E}$. Instead, we consider an ensemble of atoms on both sides of the beamline with average velocity $v_0$ and with average phase and contrast defined by the complex value $C_{avg}e^{i\Phi_{avg}}$. Without considering this ensemble, we would report $\alpha$ incorrectly by ???\%.
+
+We measure $\alpha$ by polarizing the atoms with a non-uniform electric field created by two oppositely charged pillars parallel with the $y$ axis, indicated in blue in \figref{IFMDiagram}. The field shifts $\Phi_{avg}$ by an amount roughly proportional to $\alpha/v_0^2$. We measure $v_0$ using phase choppers, which are charged wires parallel with the $y$ axis held near and parallel to grounded planes, indicated in green in \figref{IFMDiagram}. The phase choppers use the same field geometry as the pillars to apply a $\pm\pi$ phase shift to the atoms. In this section, we will explain how that field geometry induces phase shifts and how we use those fields to measure velocity and, thereby, polarizability. 
 
 \subsection{Phase Shifts with Cylindrical Electrodes}
  
 \begin{figure}
 \includegraphics[width=\linewidth,keepaspectratio]{EDiagram1.pdf}
-\caption{\label{EDiagram}(Color online) asdf}
+\caption{\label{EDiagram}Diagram showing the dimensions that determine the static electric fields in our interferometer. The circle represents the cross-section of a metal pillar or charged wire with radius $R$ held at voltage $V$. The GND line represents the ground plane, which may by physical or virtual, a distance $a$ away from the pillar edge. The parameter $b$ is the distance between the ground plane and the effective line charge within the pillar. The atom beam center is a distance $x_b$ away from the ground plane, and the different interferometer arms are separated from their neighbors by a distance $\theta_d z_0$.}
 \end{figure}
 
 Our methods of measuring both the velocity distribution and polarizability involve applying a phase shift using non-uniform electric fields created by either a cylinder at voltage $V$ next to a grounded plane or two parallel cylinders at $\pm V$ forming an effective ground plane. 
@@ -154,25 +175,24 @@ The effective line charge density
 \end{align}
 exists a distance $b = a\sqrt{1+2R/a}$ away from the ground plane, where $a$ is the distance between the ground plane and the closest cylinder edge, $R$ is the cylinders' radius, and $\hat{x}$ and $\hat{z}$ are shown in \figref{EDiagram}.
 
-When an atom with polarizability $\alpha$ enters an electric field, it's energy shifts by $U_{Stark} = -\frac{1}{2}\alpha\abs{\vec{E}}^2$. We can use the WKB approximation (since $U_{Stark} \ll E_{kinetic}$) and the Residue Theorem to compute the total phase accumulated by an atom traveling along the beamline a distance $x_b$ away from the ground plane. Even though an atom in the beam may be misaligned by an angle of up to $10^{-3}$ with the fields' ground planes, we can approximate that atoms always travel parallel to the beamline: the effective path length through the field region grows as $1/\cos{\theta} \approx 1+\theta^2$, so a misalignment of $\theta = 10^{-3}$ should increase the phase by only one part in $10^6$, which is insignificant for our purposes. Therefore, the accumulated phase along the path is
+We use the Residue Theorem to compute the total phase accumulated by an atom traveling through the field along the beamline a distance $x_b$ away from the ground plane. Even though an atom in the beam may be misaligned by an angle of up to $10^{-3}$ with the different fields' ground planes, we can approximate that atoms always travel parallel to the beamline: the effective path length through the field region grows as $1/\cos{\theta} \approx 1+\theta^2$, so a misalignment of $\theta = 10^{-3}$ should increase the phase by only one part in $10^6$, which is insignificant for our purposes. Therefore, the accumulated phase along the path for a single atom is
 \begin{align}
-	\phi(v,x) = 
+	\Phi(v,x) = 
 	\frac{1}{\hbar v} \int_{-\infty}^{\infty} \frac{1}{2} \alpha |\vec{E}|^2 dz =	
 	\frac{\lambda^2 \alpha}{\pi \epsilon_0^2 \hbar v}
 	\left( \frac{b}{b^2-x_b^2} \right)
 	\label{accumPhasePillars}
 \end{align}
-where $v$ is the atom's velocity.
 
-The different arms of the interferometer have different $x$ positions with respect to the electrodes, so the non-uniform electric field causes a differential phase shift. If the center of the field is a distance $z_0$ downstream of the first grating, for example, the atoms' possible paths are separated by a distance 
+The different paths of the interferometer have different $x$ positions with respect to the electrodes, so the non-uniform electric field causes a differential phase shift. If the center of the field is a distance $z_0$ downstream of the first grating, for example, the atoms' possible paths are separated by a distance 
 \begin{align}
 	\theta_d z_0 = \frac{\lambda_{dB}}{d_g} z_0 = \frac{h}{mv}\frac{1}{d_g} z_0
 	\label{pathSeparation}
 \end{align}
 where $\lambda_{dB}$ is the de Broglie wavelength. Paths closer to the effective line charges will acquire more total phase--thus the field causes a differential phase shift. The differential phase shifts for the interferometers on the $j=+1$ and $j=-1$ sides of the beamline (see \figref{IFMDiagram}) are
 \begin{align}
-	\Phi_{\vec{E},1}(v,x_b) = \phi(x_b+\theta_d z_0) - \phi(x_b) \nonumber \\
-	\Phi_{\vec{E},-1}(v,x_b) = \phi(x_b) - \phi(x_b-\theta_d z_0)
+	\Delta\Phi_{\vec{E},1}(v,x_b) = \Phi(x_b+\theta_d z_0) - \Phi(x_b) \nonumber \\
+	\Delta\Phi_{\vec{E},-1}(v,x_b) = \Phi(x_b) - \Phi(x_b-\theta_d z_0)
 	\label{deltaPhasePillars}
 \end{align}
 \figref{phaseShiftExample} shows an example of the interference fringes shifting due to an electric-field-induced differential phase shift.
@@ -206,9 +226,9 @@ Using phase choppers allows us to measure $v_0$ and $r$ for Cs without needing t
 
 We have identified a number of $v_0$-dependent systematic errors associated with phase chopper velocity distribution measurements. These errors must be quantified and reduced in order to measure polarizability ratios between atomic species that may typically run at different velocities.
 
-In our previous work \cite{Hromada2014}, we documented the systematic errors that would appear if we were to not accurately know $\Delta L = L_1 - L_2$, where $L_1$ is the distance between gratings 1 and 2 and $L_2$ is the distance between gratings 2 and 3. There are two components to this error contribution. The first is that increasing $|\Delta L|$ shifts the interference fringes away from the beamline. We refer to this geometric fringe magnification as the separation phase, expressed as
+In our previous work \cite{Hromada2014}, we documented the systematic errors that would appear if we were to not accurately know $\Delta L = L_1 - L_2$, where $L_1$ is the distance between gratings 1 and 2 and $L_2$ is the distance between gratings 2 and 3. There are two components to this error contribution. The first is that increasing $|\Delta L|$ shifts the interference fringes away from the beamline. We refer to this geometric fringe magnification as the separation phase shift, expressed as
 \begin{align}
-	\Phi_{sep,j} = \frac{2\pi}{d_g}
+	\Delta\Phi_{sep,j} = \frac{2\pi}{d_g}
 	\left(
 		\theta_{inc} + \frac{j}{2}\theta_d
 	\right) \Delta L
@@ -217,18 +237,18 @@ In our previous work \cite{Hromada2014}, we documented the systematic errors tha
 where $\theta_{inc}$ is the incident angle of a given atom with deBroglie wavelength $\lambda_{dB}$ on grating 1. The second component of the error is that, as $|\Delta L|$ increases, the longitudinal region at which the atoms' transverse coherence lengths overlap the most is moved away from grating 3, resulting in contrast loss \cite{Champenois1999,McMorran2008}. Furthermore, the electric fields, such as those created by the phase choppers, act as electrostatic lenses that magnify the interference fringes. This magnification also moves the maximal-overlap region longitudinally. Thus the choppers change the contrast simply by turning on, and changing the longitudinal location of the 3rd grating changes how the choppers modify the contrast. Because the ray optics model that we use to describe our interferometer does not assume finite transverse coherence lengths, we define $C_{env}$, the longitudinal contrast envelope which depends on $\Delta L$ and which electric fields are on.
 
 We identified and reduced systematic error by modeling how the collimating slits define the beam's width and divergence and by considering the finite width of the detector, both of which determine how likely it is for atoms of a given velocity to be detected and thus contribute to a measurement of $v_0$. 
-We accomplish this by integrating over possible trajectories through the slits (in addition to velocity), parameterized by x positions $x_1$ and $x_2$ from the centers of slits 1 and 2, in order to calculate the average contrast and phase of the atomic ensemble. We also define $D_j(x_1,x_2,v)$, the probability of an atom with velocity $v$ passing through the slits at positions $x_1$ and $x_2$ and diffracting to the $j$ side hitting the detector.
-This new model also added elements to the error budget: the offset of the detector in the $x$ direction $\Delta x_{det}$ and the gratings' diffraction efficiencies determine how likely it is for atoms with certain velocities to be detected.
-
-We find that as $\left|\Delta L\right|$ increases, the measured $v_0$ and $r$ become more dependent on the beam width, beam divergence, and detector width. Accordingly, we set $\Delta L = 0$ to reduce contributions to error in reported $v_0$ from other sources of uncertainty. We begin each day of measurements by setting $\Delta L$ to 0, eliminating the need to consider $\Phi_{sep}$. We know that if $\Phi_{sep}$ were nonzero, we would see the measured phase change as a function of $\Delta x_{det}$. We set $\Delta L = 0$ by finding the $\Delta L$ for which the measured phase no longer changes as a function of $\Delta x_{det}$ (see \cite{Hromada2014} for how we determined $C_{env}(t)$ experimentally).
+We accomplish this by integrating over possible trajectories through the slits (in addition to velocity), parameterized by $x$ positions $x_1$ and $x_2$ from the centers of slits 1 and 2, in order to calculate the average contrast and phase of the atomic ensemble. We also define $D_j(x_1,x_2,v)$, the probability of an atom with velocity $v$ passing through the slits at positions $x_1$ and $x_2$ and diffracting to the $j$ side hitting the detector.
+This new model also added elements to the error budget: the offset of the detector in the $x$ direction $\Delta x_{det}$ and the gratings' diffraction efficiencies determine how likely it is for atoms with certain velocities to be detected. Failure to include this component of the analysis increases systematic error in measured $v_0$ by 0.05\% and $r$ by 10\%, which corresponds to a 0.15\% error in $\alpha$.
+ 
+We find that as $\left|\Delta L\right|$ increases, the measured $v_0$ and $r$ become more dependent on the beam width, beam divergence, and detector width. Accordingly, we set $\Delta L = 0$ to reduce contributions to error in reported $v_0$ from other sources of uncertainty. We begin each day of measurements by setting $\Delta L$ to 0, eliminating the need to consider $\Delta\Phi_{sep}$. We know that if $\Delta\Phi_{sep}$ were nonzero, we would see the measured phase change as a function of $\Delta x_{det}$. We set $\Delta L = 0$ by finding the $\Delta L$ for which the measured phase no longer changes as a function of $\Delta x_{det}$ (see \cite{Hromada2014} for how we determined $C_{env}(t)$ experimentally).
 
 
 If the interferometer grating bars are significantly non-vertical, it can become necessary to consider the phase shift induced by the component of gravitational acceleration in the plane of the interferometer, which is given by
 \begin{align}
-	\Phi_{accel} = \frac{\pi g\sin{\theta_g}(L_1+L_2)^2}{2d_g v^2}
+	\Delta\Phi_{accel} = \frac{\pi g\sin{\theta_g}(L_1+L_2)^2}{2d_g v^2}
 	\label{phiAccel}
 \end{align}
-where $\theta_g$ is the tilt of the grating bars with respect to vertical. However, we eliminated the need to consider $\Phi_{accel}$ by rotating our grating bars so that they were sufficiently vertical. We measured $\theta_g$ to be $0 \pm 2 mrad$. Only if $|\theta_g| > ????$ would we need to add $\Phi_{accel}$ to our analysis.
+where $\theta_g$ is the tilt of the grating bars with respect to vertical. However, we eliminated the need to consider $\Delta\Phi_{accel}$ by rotating our grating bars so that they were sufficiently vertical. We measured $\theta_g$ to be $0 \pm 2 mrad$. Only if $|\theta_g| > ????$ would we need to add $\Delta\Phi_{accel}$ to our analysis.
 
 Taking all these effects into account, our more complete model for contrast loss as a function of chopping frequency is
 \begin{align}
@@ -244,23 +264,23 @@ Taking all these effects into account, our more complete model for contrast loss
 		D_j(x_1, x_2, v)
 		C_{env}(t)                   
 		\nonumber \\ \times
-		e^{i( \Phi_{c1,j}(v,x_1,x_2,t) + \Phi_{c2,j}(v,x_1,x_2,t-z_{c1,c2}/v) )}
+		e^{i( \Delta\Phi_{c1,j}(v,x_1,x_2,t) + \Delta\Phi_{c2,j}(v,x_1,x_2,t-z_{c1,c2}/v) )}
 		\nonumber \\ \times \left.
-		e^{i( \Phi_{sep,j}(v,x_1,x_2) + \Phi_{accel}(v) + \Phi_{sag}(v) )}
+		e^{i( \Delta\Phi_{sep,j}(v,x_1,x_2) + \Delta\Phi_{accel}(v) + \Delta\Phi_{sag}(v) )}
 		dv dx_{2} dx_{1} dt
 	\right|
 	\label{CvCF}
 \end{align}
-$\Phi_{ci,j}(v,x_1,x_2,t)$ is the differential phase shift induced by chopper $i$. $\Phi_{sag}(v)$ is the Sagnac phase, or the phase shift induced by the Earth's rotation \cite{Lenef1997,Jacquey2008}, and is given by
+$\Delta\Phi_{ci,j}(v,x_1,x_2,t)$ is the differential phase shift induced by chopper $i$. $\Delta\Phi_{sag}(v)$ is the Sagnac phase shift, or the phase shift induced by the Earth's rotation \cite{Lenef1997,Jacquey2008}, and is given by
 \begin{align}
-	\Phi_{sag}(v) = \frac{4\pi L_2^2\Omega_{lab,y}}{d_g v}
+	\Delta\Phi_{sag}(v) = \frac{4\pi L_2^2\Omega_{lab,y}}{d_g v}
 	\label{phiSag}
 \end{align}
-The rotation rate of the interferometer about the vertical axis, $\Omega_{lab,y}$, is the product of the Earth's rotation rate and the sine of the lab's latitude. Not including the Sagnac phase in the analysis raises reported $r$ by about 1\%, which in turn causes $\alpha$ to be reported 0.25\% too high.
+The rotation rate of the interferometer about the vertical axis, $\Omega_{lab,y}$, is the product of the Earth's rotation rate and the sine of the lab's latitude. Not including the Sagnac phase shift in the analysis raises reported $r$ by about 1\%, which in turn causes $\alpha$ to be reported 0.25\% too high.
 
-During times $t$ when the choppers are on, the chopper-induced phases $\Phi_{ci,j}(v,x_1,x_2)$ are adapted from \eqnref{deltaPhasePillars} and given by
+During times $t$ when the choppers are on, the chopper-induced phase shifts $\Delta\Phi_{ci,j}(v,x_1,x_2)$ are adapted from \eqnref{deltaPhasePillars} and given by
 \begin{align}
-	\Phi_{c1,j}(v,x_1,x_2) = \frac{A_{c1}}{v}j \times \nonumber \\
+	\Delta\Phi_{c1,j}(v,x_1,x_2) = \frac{A_{c1}}{v}j \times \nonumber \\
 	\left(
 		\frac{1}{b_{c1}^2 -
 			(x_{c1} + \frac{(x_2-x_1)}{z_{s1,s2}}z_{s1,c1} + x_2 + j\theta_d z_{g1,c1})^2
@@ -272,7 +292,7 @@ During times $t$ when the choppers are on, the chopper-induced phases $\Phi_{ci,
 	\right)
 	\nonumber \\ 
 	\nonumber \\	
-	\Phi_{c2,j}(v,x_1,x_2) = \frac{A_{c1}}{v}j \times \nonumber \\
+	\Delta\Phi_{c2,j}(v,x_1,x_2) = \frac{A_{c1}}{v}j \times \nonumber \\
 	\left(
 		\frac{1}{b_{c2}^2 -
 			(x_{c2} - \frac{(x_2-x_1)}{z_{s1,s2}}z_{s1,c2} - x_2 - j\theta_d z_{g1,g2})^2
@@ -294,11 +314,11 @@ Instead of requiring accurate knowledge of the chopper voltages and geometries, 
 		\int_{x_1=w_1/2}^{w_1/2}
 		\int_{x_2=w_2/2}^{w_2/2} 
 		\nonumber \\
-		P(v) e^{\Phi_{sag}(v) + \Phi_{accel}(v) + \Phi_{sep,j}(v)} 
+		P(v) e^{\Delta\Phi_{sag}(v) + \Delta\Phi_{accel}(v) + \Delta\Phi_{sep,j}(v)} 
 		dv
 	\label{CPChoppersRef}
 \end{align}
-where $C_0$ is the contrast that would be observed in the absence of $\Phi_{sag}(v)$, $\Phi_{accel}(v)$, and $\Phi_{sep}(v)$, and $\Phi_0$ is an arbitrary phase constant. When chopper $i$ is on, we instead observe
+where $C_0$ is the contrast that would be observed in the absence of $\Delta\Phi_{sag}(v)$, $\Delta\Phi_{accel}(v)$, and $\Delta\Phi_{sep}(v)$, and $\Phi_0$ is an arbitrary phase constant. When chopper $i$ is on, we instead observe
 \begin{align}
 	C_{ci,on}e^{\Phi_{ci,on}} = 
 		C_0e^{\Phi_0} \frac{1}{2} \sum_{j=-1,1}
@@ -306,17 +326,17 @@ where $C_0$ is the contrast that would be observed in the absence of $\Phi_{sag}
 		\int_{x_1=w_1/2}^{w_1/2}
 		\int_{x_2=w_2/2}^{w_2/2} 
 		\nonumber \\
-		P(v) e^{\Phi_{ci,j}(v,x_1,x_2) + \Phi_{sag}(v) + \Phi_{accel}(v) + \Phi_{sep,j}(v)} 
+		P(v) e^{\Delta\Phi_{ci,j}(v,x_1,x_2) + \Delta\Phi_{sag}(v) + \Delta\Phi_{accel}(v) + \Delta\Phi_{sep,j}(v)} 
 		dv
 	\label{CPChoppersOn}
 \end{align}
 
 \figref{CvCFExample} shows an example of a $C/C_{ref}$ vs $f_c$ measurement. 
-For tutorial purposes, Eqns. \eqref{CvCF}, \eqref{CPChoppersRef}, and \eqref{CPChoppersOn} include $\Phi_{sep}$ and $\Phi_{accel}$ even though we have tuned our apparatus so that we need not include them in our analysis.
+For tutorial purposes, Eqns. \eqref{CvCF}, \eqref{CPChoppersRef}, and \eqref{CPChoppersOn} include $\Delta\Phi_{sep}$ and $\Delta\Phi_{accel}$ even though we have tuned our apparatus so that we need not include them in our analysis.
 
 \begin{figure}
 \includegraphics[width=\linewidth,keepaspectratio]{CvCF_150420_o.pdf}
-\caption{\label{CvCFExample}(Color online) An example of a measurement of contrast loss vs. phase chopper frequency for a Cs beam. We fit a model to these data that has $v_0$ and $r$ as fit parameters in order to measure the velocity distribution.}
+\caption{\label{CvCFExample}An example of a measurement of contrast loss vs. phase chopper frequency for a Cs beam. We fit a model to these data that has $v_0$ and $r$ as fit parameters in order to measure the velocity distribution.}
 \end{figure}
 	
 The error budget for velocity distribution measurement is given in Table \ref{tableVelError}. The measured values of $v_0$ and $r$ also have statistical error in addition to uncertainty in the fit of measured $C/C_{ref}(f_c)$ to the model. Uncertainty in the measurement of $\Delta\Phi = \Phi_{c1,on} - \Phi_{ref}$ leads to uncertainty in $A_{ci}$, which in turn propagates forward as additional uncertainty in $v_0$ and $r$. The total statistical error in measured $v_0$ and $r$ is roughly $10\times$ larger than the total systematic error.
@@ -350,7 +370,7 @@ Total Sys. Error $\times 1000$ & $\sigv$ & $\sigr$ \\
 
 \begin{figure}
 \includegraphics[width=\linewidth,keepaspectratio]{dPvMP_150327_q.pdf}
-\caption{\label{dPvMPExample}(Color online) An example of a measurement of phase shift vs $x$ position of the pillars for a Rb beam. The fit parameters used to fit the model to these data are polarizability and the poles position at which the phase shift is null.}
+\caption{\label{dPvMPExample}An example of a measurement of phase shift vs $x$ position of the pillars for a Rb beam. The fit parameters used to fit the model to these data are polarizability and the poles position at which the phase shift is null.}
 \end{figure}
 
 To measure the atoms' polarizability, we use two parallel, oppositely charged, $1/2$-inch-diameter pillars mounted to a single, rigid support structure. The pillars are mounted so that a $(3999.7 \pm 1.0)\mu$m gap exists between them. A motor moves the support structure in the $\pm x$ direction, and a length gauge monitor's the structure's $x$ position. We scan the assembly across the beam so that the beam traverses the gap between the pillars, turning the field on and off as it scans, to observe the phase shift $\Delta\Phi = \Phi_{pillars,on} - \Phi_{ref}$ applied by the pillars as a function $x_b$ (see an example in \figref{dPvMPExample}). $\Phi_{ref}$ is once again the reference phase and contrast observed when there are no polarizing electric fields present.
@@ -361,8 +381,8 @@ When the pillars are on, we instead observe
 		\frac{1}{2} \sum_{j=-1,1}
 		\int_{v=0}^{\infty} P(v) \nonumber \\ \times
 		e^{
-			\Phi_{\vec{E},j}(v,x_b) + 
-			\Phi_{sag}(v) + \Phi_{accel}(v) + \Phi_{sep,j}(v)
+			\Delta\Phi_{\vec{E},j}(v,x_b) + 
+			\Delta\Phi_{sag}(v) + \Delta\Phi_{accel}(v) + \Delta\Phi_{sep,j}(v)
 		} 
 		dv
 	\label{CPPolesEOn}
@@ -395,13 +415,13 @@ Total Sys. Err. $\times 1000$ & 1.9 \\
 \end{table}
 \endgroup
 
-The error budget for the absolute polarizability measurements is given in Table \ref{tablePolError}. The only new terms are uncertainty in $\Delta L$ because of separation phase (\eqnref{phiSep}), and uncertainty in grating tilt because of acceleration phase (\eqnref{phiAccel}).
+The error budget for the absolute polarizability measurements is given in Table \ref{tablePolError}. The only new terms are uncertainty in $\Delta L$ because of  the separation phase shift (\eqnref{phiSep}), and uncertainty in grating tilt because of the acceleration phase shift (\eqnref{phiAccel}).
 
-We constructed the new pillars using steel rods, the widths of which were accurately known to $1 \mu \text{m}$. This reduced the contribution to $\delta\alpha/\alpha$ from uncertainty in pillars radius by about a factor of 10. The new pillars have a virtual ground plane between then rather than consisting of one pillar and a physical ground plane as they did in our previous work; being able to measure the phase shift with the beam on both sides of the ground plane makes it unnecessary to consider $\Phi_{sag}$. 
+We constructed the new pillars using steel rods, the widths of which were accurately known to $1 \mu \text{m}$. This reduced the contribution to $\delta\alpha/\alpha$ from uncertainty in pillars radius by about a factor of 10. The new pillars have a virtual ground plane between then rather than consisting of one pillar and a physical ground plane as they did in our previous work; being able to measure the phase shift with the beam on both sides of the ground plane makes it unnecessary to consider $\Delta\Phi_{sag}$. 
 
 We reduced some error contributions simply by measuring the apparatus geometry more carefully. We reduced $\delta\alpha/\alpha$ due to uncertainty in the pillars' voltage by a factor of 3 by independently calibrating our voltage supplies. We also reduced $\delta\alpha/\alpha$ due to uncertainty in distance between the pillars and the effective ground plane by sweeping the pillars across the atom beam and observing how far the pillars traveled between points at which the atom beam half-eclipsed each pillar. We were able to measure the distance between the first grating and the pillars to 1/4 mm accuracy rather than 2 mm accuracy. 
 
-It is important to note that measurements of $\alpha$ are not significantly affected by whether or not we consider $\Phi_{accel}$ in our polarizability analysis or in our velocity distribution analysis because the grating bars are sufficiently vertical. Therefore, $\Phi_{sag}$, $\Phi_{accel}$, and $\Phi_{sep}$ are included in \eqnref{CPPolesEOn} for tutorial purposes only--our result is unaffected if we remove them.
+It is important to note that measurements of $\alpha$ are not significantly affected by whether or not we consider $\Delta\Phi_{accel}$ in our polarizability analysis or in our velocity distribution analysis because the grating bars are sufficiently vertical. Therefore, $\Delta\Phi_{sag}$, $\Delta\Phi_{accel}$, and $\Delta\Phi_{sep}$ are included in \eqnref{CPPolesEOn} for tutorial purposes only--our result is unaffected if we remove them.
 
 Additionally, we found that modeling the beam's thickness and divergence was unnecessary for analysis of polarizability data if $\Delta L = 0$ and becomes increasingly important as $|\Delta L|$ increases. Because we keep $\Delta L$ close to 0, we find our reported results do not change if we model the beam's thickness and divergence.
 
@@ -484,49 +504,131 @@ Rb:K  & $\ratRbK$ \\
 \section{Comparisons with other work}
 
 \begin{figure*}
-\includegraphics[width=0.59\linewidth,keepaspectratio]{displayAbsComps.pdf}
-\includegraphics[width=0.4\linewidth,keepaspectratio]{displayRatComps.pdf}
+\includegraphics[width=0.60\linewidth,keepaspectratio]{displayAbsComps.pdf}
+\includegraphics[width=0.38\linewidth,keepaspectratio]{displayRatComps.pdf}
 \includegraphics[width=0.55\linewidth,keepaspectratio]{displayCompsLegend.pdf}
-\caption{\label{comparisons}(Color online) Our absolute measurements (left) and ratio measurements (right) compared with other measurements, \textit{ab initio} calculations, and semi-empirical calculations 
-\cite{
-Molof1974,Hall1974,Tang1976,Reinsch1976,Kutzelnigg1978,
+\caption{\label{comparisons}Our absolute measurements (left) and ratio measurements (right) compared with other measurements, \textit{ab initio} calculations, and semi-empirical calculations 
+\cite{Molof1974,Hall1974,Tang1976,Reinsch1976,Kutzelnigg1978,
 Christiansen1982,Fuentealba1999,Muller1984,Kello1993,VanWijngaarden1994,
 Dolg1996,Patil1997,Derevianko1998,Magnier2002,Derevianko2001,
-Amini2003,Lim2005,Safronova2008,Holmgren2010,Nandy2012,
-Jiang2013,Sahoo2013,Safronova2013,Borschevsky2013}.
+Amini2003,Mitroy2003,Safronova2004,Lim2005,Safronova2008,
+Holmgren2010,Safronova2011,Nandy2012,Jiang2013,Sahoo2013,
+Safronova2013,Borschevsky2013}.
 The references are represented on the x-axis by the first three letters of the first author's last name followed by the year of publication. Reference Der99 used experimentally-determined electric dipole matrix elements, while reference Pat97 used experimentally-determined energy levels \cite{Derevianko1998,Patil1997}}.
 \end{figure*}
 
 \begin{figure}
-\includegraphics[width=\linewidth,keepaspectratio]{displayLifeComps.pdf}
-\caption{\label{comparisonsLifetimes}(Color online) Our measurements (red) are compared with polarizabilities calculated using experimentally measured lifetimes \cite{Young1994,Volz2006,Wang1997,Rafac1999,Sell2011,Patterson2015}. Light blue points were calculated using both $Ns-Np_{1/2}$ and $Ns-Np_{3/2}$ lifetimes, while dark purple points were calculated using $Ns-Np_{3/2}$ lifetimes and the $Ns-Np_{3/2}$:$Ns-Np_{1/2}$ ratio provided by Young \etal \cite{Young1994}}
+\includegraphics[width=0.49\linewidth,keepaspectratio,valign=t]{displayKMisc.pdf}
+\includegraphics[width=0.49\linewidth,keepaspectratio,valign=t]{displayRbMisc.pdf}
+\includegraphics[width=0.49\linewidth,keepaspectratio,valign=t]{displayCsMisc.pdf}
+\includegraphics[width=0.49\linewidth,keepaspectratio,valign=t]{displayMiscLegend.pdf}
+\caption{\label{comparisonsMisc}Comparisons of our measured polarizabilities to polarizabilities derived from measured lifetimes and lifetime ratios,
+\cite{Young1994,Rafac1999,Bouloufa2007,Volz2006,Simsarian1998,Wang1997,Rafac1998}, 
+lifetimes inferred from photo-association data
+\cite{Gabbanini2000,Gutterres2002},
+theoretical $D^2$ values
+\cite{Porsev2010},
+and van der Waals $C_6$ measurements
+\cite{Leo2000,Chin2004,Derevianko2001}.}
 \end{figure}
 
-\figref{comparisons} compares our polarizability measurements with theoretical calculations, semi-empirical calculations, and experimental measurements subsequent to and including Molof \etal's and Hall \etal's 1974 measurements \cite{Molof1974,Hall1974}. Our absolute measurements are consistent with all previous absolute measurements, though our Cs measurement is only barely consistent with Amini and Gould's. As a self-consistency check: our measurements are systematically higher, though still statistically consistent with, our lab's previous measurements \cite{Holmgren2010}. At present, we don't have an explanation for these almost-discrepancies. We acknowledge the possibility of a systematic error in our experiment we are as of yet unaware of, and we hope to calibrate our measurements in the future by measuring a well-known polarizability, such as that of lithium or metastable helium.
+\figref{comparisons} compares our polarizability measurements with theoretical calculations, semi-empirical calculations, and experimental measurements subsequent to and including Molof \etal's and Hall \etal's 1974 measurements \cite{Molof1974,Hall1974}. Our absolute measurements are consistent with all previous absolute measurements except our lab's own previous $\arb$ measurement. At present, we don't have an explanation for that discrepancy.
 
 \figref{comparisons} also compares our ratios to other theoretical, semi-empirical, and experimental ratios. Our ratios are also consistent with all previous measurements.
 
-Additionally, we can compare our measurements to polarizabilities calculated using recent high-precision measurements of state lifetimes. For an atom in state $i$, the polarizability can be written in terms of Einstein A coefficients as
+Static polarizabilities can be related to transition dipole matrix elements, state lifetimes, oscillator strengths, and van der Waals coefficients. We will describe those relations and compare our $\alpha$ measurements to $\alpha$ values derived from recent calculations and high-precision measurements of those quantities; those comparisons are shown in \figref{comparisonsMisc}. We will also report the values of those quantities that can be derived from our $\alpha$ measurements.
+
+\begingroup
+\begin{table}
+\caption{\label{tableCoreTail}We use the following core polarizabilities ($\acore$) and tail polarizabilities ($\atail$) in order to derive polarizabilities from lifetime measurements and matrix elements from polarizabilities. The sources are cited next to each value in the table. We acknowledge that there are several recent theoretical $\acore$ values for 
+Cs \cite{Sansonetti1981,Johnson1983,Safronova1999,Derevianko2001}, 
+Rb \cite{Johnson1983,Safronova1999}, and 
+K \cite{Johnson1983,Muller1984}
+that vary by up to 0.03\%, 0.07\%, and 0.4\% of $\alpha$, respectively.}
+\begin{center}
+\begin{tabular}{l l l}
+\hline\hline
+Atom & $\acore (\AA^3)$ & $\atail (\AA^3)$ \\
+\hline
+Cs & 2.34 \cite{Lim2002} & 0.16 \cite{Derevianko2001} \\
+Rb & 1.36 \cite{Lim2002} & 0.25 \cite{Safronova2011} \\
+K  & 0.82 \cite{Lim2002} & 0.11 \cite{Sahoo2013} \\
+\hline\hline
+\end{tabular}
+\end{center}
+\end{table}
+\endgroup
+
+The polarizability (in volume units) of an atom in state $i$ can be written in terms of state lifetimes as
 \begin{align}
 	\alpha_i = \frac{3c^3}{2} \sum_{k\neq i} 
-	\frac{A_{ki}}{\omega_{ik}^4} \frac{g_k}{3g_i}
-	+ \alpha_{core}
-	+ \alpha_{tail}
+	\frac{1}{\tau_{ki} \omega_{ik}^4} \frac{g_k}{3g_i}
+	+ \acore
+	+ \atail
 	\label{polFromLifetimes}
 \end{align}
-where $\omega_{ik}$ is the transition frequency between states $i$ and $k$ and $g_n = 2J_n+1$ is the degeneracy factor for state $n$. In our case, state $i$ is the ground state. $\alpha_{core}$ is the polarizability of the core electrons, and $\alpha_{tail}$ approximates all the terms not explicitly included in the sum; we will only be using measured lifetimes for $Ns-Np$ transitions.
-We use Lim \etal's calculated core polarizabilities of 
-$\alpha_{core,\mathrm{K}} = 0.818(6) \AA^3$, 
-$\alpha_{core,\mathrm{Rb}} = 1.350(6) \AA^3$, and 
-$\alpha_{core,\mathrm{Cs}} = 2.341(15) \AA^3$ \cite{Lim2002}. 
-Furthermore, Derevianko and Porsev calculated that 
-$\alpha_{tail,\mathrm{Cs}} = 0.162 \AA^3$ {Derevianko2001}. Because we lack values for $\alpha_{tail,\mathrm{Rb}}$ and $\alpha_{tail,\mathrm{K}}$ and because $\alpha_{tail,\mathrm{Cs}}$ only accounts for 0.27\% of $\acs$, we can approximate for these purposes that $\alpha_{tail}$ accounts for 0.27\% of $\alpha$ for Rb and K as well. The $\omega_{0k}$ values are calculated using transition wavelengths reported by NIST \cite{NIST}. 
+where $\tau_{ki}$ is the lifetime associated with spontaneous decay from state $k$ to $i$, $\omega_{ik}$ is the transition frequency between states $i$ and $k$, and $g_n = 2J_n+1$ is the degeneracy factor for state $n$. In our case, state $i$ is the ground state. $\acore$ is the polarizability of the core electrons, and $\atail$ approximates all the terms not explicitly included in the sum; we only explicitly consider $Ns_{1/2}-Np_{1/2}$ and $Ns_{1/2}-Np_{3/2}$ transitions, and we abbreviate the associated lifetimes to $\tau_{1/2}$ and $\tau_{3/2}$.
+In our calculations, we use the $\acore$ and $\atail$ values indicated in Table \ref{tableCoreTail}.
+The $\omega_{0k}$ values are calculated using transition wavelengths reported by NIST \cite{NIST}. 
+\figref{comparisonsMisc} shows polarizabilities calculated using measurements of $\tau_{1/2}$ and $\tau_{3/2}$
+\cite{Young1994,Rafac1999,Bouloufa2007,Volz2006,Simsarian1998,Wang1997}
+and values of $\tau_{1/2,Rb}$ and $\tau_{3/2,Rb}$ inferred in 2002 by Gutterres \etal from photo-association data taken in 2000 by Gabbanini \etal \cite{Gabbanini2000,Gutterres2002}.
+ Additionally, Rafac and Tanner measured $R_{Cs} = \tau_{1/2,Cs}/\tau_{3/2,Cs} = 1.9809(9)$ in 1998 \cite{Rafac1998}, which we use with Patterson \etal's 2015 measurement of $\tau_{3/2,Cs}$ to report $\alpha$ \cite{Patterson2015}.
 
-\figref{comparisonsLifetimes} compares our measurements with these lifetime-based results. Our measurements are significantly higher than most of the values based on recent lifetime measurements. Because the lifetime measurements were all made by different people using different experimental methods, these discrepancies strongly suggest that our absolute polarizability measurements are too high and require calibration.
+We can write $\alpha_i$ in terms of the transition dipole matrix elements as
+\begin{align}
+	\alpha_i = \frac{e^2}{12 \pi \epsilon_0 a_0^4} \sum_{k\neq i}	
+	\frac{\left|\brakett{i}{\hat{D}}{k}\right|^2}{\hbar\omega_{ik}}	
+	+ \acore
+	+ \atail
+	\label{polFromMatrixElements}
+\end{align}
+where $a_0$ is the Bohr radius. 
+Again, we only explicitly consider the $Ns_{1/2}-Np_{1/2}$ and $Ns_{1/2}-Np_{3/2}$ matrix elements, 
+which we abbreviate to $D_{1/2}^2$ and $D_{3/2}^2$, respectively. 
+Since $1/\tau_{ik} \propto D_{ik}^2$,
+we use $R_{Cs}$ along with Porsev \etal's 2010 calculation of $D_{1/2,Cs}^2 = 20.334$ (in atomic units) to report polarizability \cite{Rafac1998,Porsev2010}.
+
+In 2002, Derevianko and Porsev derived a method for obtaining values of $D_{1/2,Cs}^2$ from Cs van der Waals $C_6$ coefficients \cite{Derevianko2001}. \figref{comparisonsMisc} includes $\alpha$ values derived using experimental Cs $C_6$ measurements in conjunction with Derevianko and Porsev's method and $R_{Cs}$ \cite{Leo2000,Chin2004,Derevianko2001,Rafac1998}.
+
+Finally, we use our polarizability measurements along with $R_{Cs}$ to report matrix elements $|D|$, lifetimes, and oscillator strengths. $\alpha_i$ is given in terms of oscillator strengths $f_{ik}$ as 
+\begin{align}
+	\alpha_i = \frac{e^2}{4 \pi \epsilon_0 m}
+	\sum_{k \neq i}
+	\frac{f_{ik}}{w_{ik}^2}
+	+ \acore
+	+ \atail
+	\label{polFromOscStr}
+\end{align}
+where $m$ is the electron mass.
+Additionally, we use Derevianko and Porsev's method to report a Cs van der Waals $C_6$ coefficient. These results are displayed in Table \ref{tableMisc}. 
+
+As a final comparison, we note that our $\left|D_{1/2,Cs}\right|$ value is higher than and inconsistent with the theoretical $\left|D_{1/2,Cs}\right|$ calculated by Porsev \etal in 2010 \cite{Porsev2010}.
+
+\begingroup
+\begin{table}
+\caption{\label{tableMisc}Matrix elements, lifetimes, oscillator strengths, and van der Waals $C_6$ coefficients calculated from our polarizability measurements along with Rafac and Tanner's $R_{Cs}$ \cite{Rafac1998}. The $C_6$ coefficient was calculated using Derevianko and Porsev's method of obtaining $C_6$ from matrix elements \cite{Derevianko2001}. The matrix elements and $C_6$ coefficient are expressed in atomic units, while the lifetimes and oscillator strengths are expressed in SI units.}
+\begin{center}
+\begin{tabular}{l l l l}
+\hline\hline
+Quantity & Cs & Rb & K \\
+\hline
+$\left|D_{1/2}\right|$	& 4.515(4) & 4.260(4) & 4.125(4) \\
+$\left|D_{3/2}\right|$	& 6.354(6) & 5.995(6) & 5.806(6) \\
+$\tau_{1/2}$ (ns)		& 34.67(6) & 27.44(5) & 26.49(5) \\
+$\tau_{3/2}$ (ns)		& 30.28(6) & 26.09(5) & 26.40(5) \\
+$f_{1/2}$				& 0.3461(6) & 0.3467(7) & 0.3356(6) \\
+$f_{3/2}$				& 0.3597(7) & 0.3498(7) & 0.3339(6) \\
+$C_6$					& 6905(23) & & \\
+\hline\hline
+\end{tabular}
+\end{center}
+\end{table}
+\endgroup
 
 \section{Outlook}
 
-We are currently exploring ways to measure the polarizability of metastable He, the polarizability of which can be easily calculated. By measuring $\acs:\alpha_{He*}$, we could report an absolute measurement of $\acs$ with uncertainty comparable to that of the ratios reported here for the benefit of PNC research and as a calibration of the measurements presented in this work.
+We are currently exploring ways to measure the polarizability of metastable He, the polarizability of which can be easily calculated. By measuring $\acs:\alpha_{\mathrm{He*}}$, we could report an absolute measurement of $\acs$ with precision comparable to that of the ratios reported here for the benefit of PNC research. Such a measurement would also act as a calibration of the measurements presented in this work, because it would be independent of systematic errors that may affect our absolute measurements.
 
 We are also exploring electron-impact ionization schemes for atom detection, which would allow us to detect a much broader range of atoms and molecules. Our Langmuir-Taylor only allows us to detect alkali metals and some alkaline-Earth metals. Installing a new, "universal" detector would allow us to broaden the scope of atom interferometry as a precision measurement tool. 
 
