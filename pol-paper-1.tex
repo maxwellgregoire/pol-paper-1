@@ -122,7 +122,7 @@ Specifically, we used phase choppers to measure atomic beam velocity distributio
 
 
 
-\section{I. Introduction}
+\section{Introduction} \label{sectionIntroduction}
 
 Measurements of static electric-dipole polarizabilities serve as benchmark tests for \textit{ab initio} calculations of electric-dipole transition matrix elements. 
 These calculations require understanding quantum many-body systems with relativistic corrections, and there are many different methods that attempt to calculate these matrix elements in a reasonable amount of computing time \cite{Mitroy2010}. Testing these methods is important because these matrix elements are used to calculate many atomic properties, such as lifetimes, oscillator strengths, line strengths, van der Waals interaction potentials and associated cross sections, Feshbach resonances, and photoassociation rates.
@@ -149,7 +149,7 @@ The nanogratings, g1, g2, and g3, are spaced longitudinally such that $L_1 = L_2
 We consider the four separate interferometers in our data analysis, labeled with $k=+2,+1,-1,-2$, that form via 0th, $\pm$1st, and $\pm$2nd order diffraction from g1.
 The atoms are detected by a platinum Langmuir-Taylor detector \cite{Delhuille2002}, indicated in orange.
 The pair of blue circles represents oppositely-charged cylindrical electrodes (extending perpendicular to the page) that form a virtual ground plane between them. The electric field from these electrodes polarizes the atoms and thereby shifts the interference pattern's phase. 
-The phase choppers are shown in green; each phase chopper is a charged wire next to a grounded plane. The geometry terms relevant to the pillars and phase choppers are displayed in \figref{EDiagram} and discussed in section II.a.
+The phase choppers are shown in green; each phase chopper is a charged wire next to a grounded plane. The geometry terms relevant to the pillars and phase choppers are displayed in \figref{EDiagram} and discussed in Section \ref{sectionPhaseShifts}.
 Due to the rotation of the Earth, the lab has a rotation rate about the vertical axis of $\Omegalab = 38.88$ $\mu$rad/s that is also relevant to our analysis.  }
 \end{figure*}
 
@@ -173,7 +173,7 @@ To support our error analysis, we also developed a method to monitor and adjust 
 %H. Scheffers and J. Stark, Phys. Z. 35, 625 (1934)
 
 
-\section{II. Apparatus description and error analysis}
+\section{Apparatus description and error analysis} \label{sectionApparatusDescription}
 
 \begingroup
 \begin{table}
@@ -212,13 +212,13 @@ The first two gratings manipulate the atoms' de Broglie waves to form a 100 nm p
 The method of observing interference fringes is described in detail in \cite{Kokorowski2001}: we scan the second grating in the $\pm x$ direction and observe the flux admitted through the third grating in order to determine the interference pattern's contrast and phase.
 We measure that transmitted atomic flux with a 100 $\mu$m wide platinum wire Langmuir-Taylor detector \cite{Delhuille2002}.
 
-In the rest of Section II we describe how we measure the atoms' velocity distribution and polarizability.
+In the rest of Section \ref{sectionApparatusDescription} we describe how we measure the atoms' velocity distribution and polarizability.
 We measure $v_0$, the atoms' mean velocity, using phase choppers, which are charged wires parallel with the $y$ axis held parallel to grounded planes, indicated in green in \figref{IFMDiagram}.
 We measure static polarizability $\alpha$ with a non-uniform electric field created by two oppositely charged cylindrical pillars parallel with the $y$ axis and indicated in blue in \figref{IFMDiagram}. The pillars' electric field shifts the interference fringe phase by an amount roughly proportional to $\alpha/v_0^2$. 
-Section II.a. describes how the electric field geoemtry of both the phase choppers and the pillars causes a differential phase shift. Section II.b. describes how we use the phase choppers to measure the velocity distribution, and section II.c. describes how we use the pillars to measure $\alpha$. Section II.d. discusses how we apply our knowledge of the velocity distribution to analyze the polarizability data taken with the pillars.
+Section \ref{sectionPhaseShifts} describes how the electric field geoemtry of both the phase choppers and the pillars causes a differential phase shift. Section \ref{sectionVelocity} describes how we use the phase choppers to measure the velocity distribution, and section \ref{sectionPolarizability} describes how we use the pillars to measure $\alpha$. Section \ref{sectionDeterminingv0vr} discusses how we apply our knowledge of the velocity distribution to analyze the polarizability data taken with the pillars.
 
 
-\subsection{II.a. Phase shifts with cylindrical electrodes}
+\subsection{Phase shifts with cylindrical electrodes} \label{sectionPhaseShifts}
 
 \begin{figure}
 \includegraphics[width=0.7\linewidth,keepaspectratio]{EDiagram2.pdf}
@@ -274,7 +274,7 @@ The differential phase shifts for the four interferometers are
 In the above equations, $\theta_d z_0$ is the lateral separation between classical paths in the interferometer, where $\theta_d = \lambda_{\mathrm{dB}} / d_g$ is the diffraction angle and $z_0$ the distance to 
 the first grating (in the case of the pillars and chopper c1) or the third grating (in the case of chopper c2).
 
-\subsection{II.b. Velocity measurement}
+\subsection{Velocity measurement} \label{sectionVelocity}
 
 The atoms in the beam do not all have the same velocity, so the electric fields do not apply the same phase shifts to each diffracted atom.
 We observe the average phase and contrast of an ensemble of atoms with velocity distribution $P(v)$. 
@@ -385,7 +385,7 @@ Additionally, Holmgren \etalspace \cite{Holmgren2010,Holmgren2013} demonstrated 
 \figref{polError} shows how a 4\% dimer mole fraction would lead to a significant (0.1\%) error in measured polarizability.
 
 
-\subsection{II.c. Polarizability measurement}
+\subsection{Polarizability measurement} \label{sectionPolarizability}
 
 To measure the Cs, Rb, and K polarizability, we use two parallel, oppositely charged, $1/2$-inch-diameter, stainless-steel pillars. The pillars are mounted to a single, rigid support structure so that a 3999.7 $\pm$ 1.0 $\mu$m gap exists between them. A motor moves the support structure in the $\pm x$ direction, and a length gauge monitors the structure's $x$ position. The length gauge measures displacements of the structure with 30 nm accuracy. 
 We begin a polarizability measurement with the assembly positioned such that the beam passes through the gap between the pillars near one of the edges.
@@ -448,7 +448,7 @@ To verify that $a_{\mathrm{pillars}}$ did not change over time, we repeated this
 Our $\theta_g$ was always close enough to zero such that we did not need to consider $\dphiaccel$ in our polarizability data analysis. We would only need to consider $\dphiaccel$ if $|\theta_g|$ exceeded 23 mrad.
 We also find that uncertainties in $w_1$ and $w_2$ each do not correspond to more than 0.004\% uncertainty in $\alpha$.
 
-\subsection{II.d. Determining the velocity distribution during polarizability measurements}
+\subsection{Determining the velocity distribution during polarizability measurements} \label{sectionDeterminingv0vr}
 
 \begingroup
 \begin{table}
@@ -480,7 +480,7 @@ We measure the velocity distribution twice between every four scans of the pilla
 We linearly interpolate between $v_0$ and $v_r$ measurements before and after each pillars scan to obtain those quantities at the time of that scan.
 Using cubic spline interpolation and Gaussian Process Regression to interpolate between $v_0$ and $v_r$ measurements changes our reported polarizabilities by no more than 0.001\%, which is small compared to our other uncertainties.
 
-\section{III. Results and discussion}
+\section{Results and discussion} \label{sectionResults}
 
 Table \ref{tableAbs} shows our measurement results for the K, Rb, and Cs atomic polarizabilities, $\ak$, $\arb$, and $\acs$.  The tabulated statistical uncertainties are the standard error of the mean for each result.  To get this statistical precision, we acquired over 90 hours of data, including 150 data sets similar to \figref{dPvMPExample} and 60 data sets similar to \figref{CvCFExample}.   The total systematic uncertainty for each measurement is also stated in Table \ref{tableAbs}, and a breakdown of the systematic uncertainty budget is summarized in \figref{polError}.  While the statistical uncertainties are typically 0.05\% for our measurements of polarizabilities, the systematic uncertainties are three to four times larger, and cause a total uncertainty of typically 0.19\% for each measurement.
 
@@ -488,7 +488,7 @@ We report the ratios of polarizabilities $\acs/\ak$, $\acs/\arb$, and $\arb/\ak$
 These ratios have uncertainties smaller than 0.08\% because we used the same apparatus for each direct measurement.
 For many of the sources of systematic uncertainty summarized in \figref{polError}, an error in one of those quantities would scale each direct polarizability measurement by the same amount. These correlated uncertainties, such as electrode geometry or grating pitch, do not contribute significantly to systematic errors in our measured polarizability ratios.
 However, uncertainties in $w_1$, $w_2$, $w_{\mathrm{det}}$, and $\Delta L$ affect our $\ak$, $\arb$, and $\acs$ measurements differently and therefore contribute a small amount to the final systematic uncertainties in the ratios. Even so, the ratios' systematic errors are much smaller than the statistical uncertainties. 
-We discuss the value of high-precision ratios for testing atomic theories in Section III.a, and we discuss the possibility of using such ratios to improve individual measurements of polarizability in the Outlook section (Section IV).
+We discuss the value of high-precision ratios for testing atomic theories in Section \ref{sectionComparisonsWithOtherExpTheory}, and we discuss the possibility of using such ratios to improve individual measurements of polarizability in the Outlook section (Section \ref{sectionOutlook}).
 
 \begingroup
 \begin{table}
@@ -524,7 +524,7 @@ $\arb/\ak$  & $\ratRbK$ & $2\cdot 10^{-5}$ \\
 \end{table}
 \endgroup
 
-\subsection{III.a. Comparisons with other experimental and theoretical polarizabilities}
+\subsection{Comparisons with other experimental and theoretical polarizabilities} \label{sectionComparisonsWithOtherExpTheory}
 
 \begin{figure*}
 \includegraphics[width=0.60\linewidth,keepaspectratio]{displayAbsComps.pdf}
@@ -569,17 +569,17 @@ Both measurements also agree with $\acs$ values inferred from the atomic structu
 Most theoretical predictions for $\ak$, $\arb$, and $\acs$ deviate from each other and from our measurements significantly.   Out of 28 sets of theoretical predictions shown in \figref{comparisons}, only ten sets of predictions \cite{Derevianko1998,Derevianko2001,Iskrenova-Tchoukova2007,Safronova2008,Safronova2011,
 Nandy2012,Jiang2013,Sahoo2013,
 Safronova2013,Borschevsky2013} are consistent with our results within 3$\sigma$ (where $\sigma$ is the standard deviation of our measurement). Furthermore, the semi-empirical $\ak$, $\arb$, and $\acs$ values calculated in 1999 by Derevianko \etalspace are the only predictions that match our own $\ak$, $\arb$, and $\acs$ measurements
-to within 3$\sigma$. These predictions were made using measured lifetimes and energies.  This is an important point because there are now additional data on lifetimes, van der Waals $C_6$ measurements, and line strength ratios that can inform new semi-empirical predictions for polarizabilities that we discuss in Section III.b and \figref{comparisonsMisc}.
+to within 3$\sigma$. These predictions were made using measured lifetimes and energies.  This is an important point because there are now additional data on lifetimes, van der Waals $C_6$ measurements, and line strength ratios that can inform new semi-empirical predictions for polarizabilities that we discuss in Section \ref{sectionComparisonsWithDerived} and \figref{comparisonsMisc}.
 
 
 
 
-The right side of \figref{comparisons} compares our measurements of atomic polarizability ratios to other theoretical, semi-empirical, and experimental reports for these ratios.  The values we measured for $\acs/\ak$, $\acs/\arb$, and $\arb/\ak$ are consistent with all of the previous experimental measurements of these ratios, given the larger uncertainties associated with previous measurements.  Comparing theoretical predictions to our measured polarizability ratios serves as a different way to test the theoretical predictions.  Since the fractional uncertainties on our measured ratios are smaller than those of our absolute measurements, our ratios serve as a more precise test for theoretical works that predict $\alpha$ values for multiple alkali atoms.  
+\figref{comparisons} (b) compares our measurements of atomic polarizability ratios to other theoretical, semi-empirical, and experimental reports for these ratios.  The values we measured for $\acs/\ak$, $\acs/\arb$, and $\arb/\ak$ are consistent with all of the previous experimental measurements of these ratios, given the larger uncertainties associated with previous measurements.  Comparing theoretical predictions to our measured polarizability ratios serves as a different way to test the theoretical predictions.  Since the fractional uncertainties on our measured ratios are smaller than those of our absolute measurements, our ratios serve as a more precise test for theoretical works that predict $\alpha$ values for multiple alkali atoms.  
 
 
 
 
-\subsection{III.b. Comparisons with polarizabilities derived from other quantities}
+\subsection{Comparisons with polarizabilities derived from other quantities} \label{sectionComparisonsWithDerived}
 
 Static polarizabilities can be related to electric dipole transition matrix elements, state lifetimes, oscillator strengths, and van der Waals coefficients. We will describe those relations and compare our $\alpha$ measurements to $\alpha$ values derived from recent calculations and high-precision measurements of those quantities; those comparisons are shown in \figref{comparisonsMisc} and Table \ref{tableComparisons}.
 
@@ -757,7 +757,7 @@ In 2002, Derevianko and Porsev demonstrated a method for obtaining values of $D_
 
 
 
-\subsection{III.c. Other atomic properties derived from our polarizability measurements}
+\subsection{Other atomic properties derived from our polarizability measurements} \label{sectionDerivedProperties}
 
 Finally, we use our polarizability measurements to report matrix elements, lifetimes, oscillator strengths, line strengths, and van der Waals $C_6$ coefficients.
 In these calculations, we use residual polarizabilities $\alpha_r$ and matrix element ratios $R$ from Table \ref{tableOmegaRes}.
@@ -814,7 +814,7 @@ We note that our Cs $D_{1/2}$ value is consistent with the theoretical Cs $D_{1/
 Finally, we use our measurements together with recent measurements of Cs, Rb, and K $\alpha_{np_{1/2}} - \alpha_{ns_{1/2}}$ \cite{Hunter1991,Miller1994} to report excited state polarizabilities $\alpha_{np_{1/2}}$ with better than 0.09\% uncertainty. 
 These results are shown in Table \ref{tablePolExcited} and serve as benchmark tests for calculations of dipole transition matrix elements for $p-d$ transitions.
 
-\section{IV. Outlook}
+\section{Outlook} \label{sectionOutlook}
 
 We are currently exploring ways to measure the polarizability of Li and metastable He, the polarizabilities of which can be easily calculated. By measuring $\acs/\alpha_{\mathrm{He*}}$ or $\acs/\alpha_{\mathrm{Li}}$, we could report a direct measurement of $\acs$ with precision comparable to that of the ratios reported here for the benefit of PNC research. Such a measurement would also act as a calibration of the measurements presented in this work, because it would be independent of systematic errors that may affect our direct measurements.
 
