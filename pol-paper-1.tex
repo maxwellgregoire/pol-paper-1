@@ -31,7 +31,8 @@
 \newcommand{\ee}[1]{\cdot 10^{ #1}}
 \newcommand{\bra}[1]{\left\langle #1 \right|}
 \newcommand{\ket}[1]{\left| #1 \right\rangle}
-\newcommand{\brakett}[3]{\left.\left\langle #1 \right|\right|#2\left|\left| #3 \right\rangle\right.}
+%\newcommand{\brakett}[3]{\left.\left\langle #1 \right|\right|#2\left|\left| #3 \right\rangle\right.}
+\newcommand{\brakett}[3]{\left.\left\langle#1\right.\right.\|#2\|\left.\left.#3\right\rangle\right.}
 \newcommand{\braket}[2]{\left\langle #1 \right|\left. #2 \right\rangle}
 \newcommand{\trace}[1]{\mathrm{Tr}\left(#1\right)}
 \newcommand{\abs}[1]{\left|#1\right|}
@@ -42,20 +43,16 @@
 \newcommand{\arb}{\alpha_{\textrm{Rb}}}
 \newcommand{\acs}{\alpha_{\textrm{Cs}}}
 
-\newcommand{\polK}{42.97(2)(8)}
-\newcommand{\polRb}{47.44(3)(9)}
-\newcommand{\polCs}{59.45(3)(11)}
-\newcommand{\polKSysOnly}{42.97(8)}
-\newcommand{\polRbSysOnly}{47.44(9)}
-\newcommand{\polCsSysOnly}{59.45(11)}
+\newcommand{\polK}{42.93(2)(7)}
+\newcommand{\polRb}{47.39(3)(8)}
+\newcommand{\polCs}{59.39(3)(9)}
+\newcommand{\polKSysOnly}{42.93(7)}
+\newcommand{\polRbSysOnly}{47.39(8)}
+\newcommand{\polCsSysOnly}{59.39(9)}
 
 \newcommand{\ratRbK}{1.1040(9)}
-\newcommand{\ratCsK}{1.3835(9)}
+\newcommand{\ratCsK}{1.3834(9)}
 \newcommand{\ratCsRb}{1.2532(10)}
-
-% obselete
-\newcommand{\sigv}{ASDFASDFASDF}
-\newcommand{\sigr}{ASDFASDFASDFA}
 
 \newcommand{\Omegalab}{\Omega_{\mathrm{lab},y}}
 
@@ -74,8 +71,8 @@
 
 \newcommand{\AAA}{\mathrm{\AA}}
 
-\newcommand{\abinit}{\textit{ab initio} }
-
+\newcommand{\abinit}{\textit{ab initio}}
+\newcommand{\abinitspace}{\textit{ab initio} }
 
 
 
@@ -114,7 +111,7 @@ Specifically, we used phase choppers to measure atomic beam velocity distributio
 \end{abstract}
 
 
-\pacs{03.75.Dg,32.10.Dk}
+\pacs{32.10.Dk,03.75.Dg}
 
 
 
@@ -125,14 +122,14 @@ Specifically, we used phase choppers to measure atomic beam velocity distributio
 \section{Introduction} \label{sectionIntroduction}
 
 Measurements of static electric-dipole polarizabilities serve as benchmark tests for \textit{ab initio} calculations of electric-dipole transition matrix elements. 
-These calculations require understanding quantum many-body systems with relativistic corrections, and there are many different methods that attempt to calculate these matrix elements in a reasonable amount of computing time \cite{Mitroy2010}. Testing these methods is important because these matrix elements are used to calculate many atomic properties, such as lifetimes, oscillator strengths, line strengths, van der Waals interaction potentials and associated cross sections, Feshbach resonances, and photoassociation rates.
+These calculations require understanding quantum many-body systems with relativistic corrections, and there are many different methods that attempt to calculate these matrix elements in a reasonable amount of computing time \cite{Mitroy2010}. Testing these methods is important because these matrix elements are used to calculate several atomic properties, such as lifetimes, oscillator strengths, line strengths, van der Waals interaction potentials and associated cross sections, Feshbach resonances, and photoassociation rates.
 Measuring alkali static polarizabilities as a means of testing atomic 
 structure calculations has been of interest to the physics community since
 Stark's pioneering measurements in 1934 \cite{Scheffers1934}. Static polarizabilities have been measured using deflection \cite{Scheffers1934,Chamberlain1963,Hall1974,Ma2015}, an E-H gradient
 balance \cite{Salop1961,Molof1974a}, times-of-flight of an atomic fountain \cite{Amini2003}, and phase shifts in atomic and molecular interferometers
 \cite{Ekstrom1995,Miffre2006,Holmgren2010,Berninger2007}.
 
-We measured the static electric-dipole polarizabilities of K, Rb, and Cs atoms with 0.19\% uncertainty using a Mach-Zehnder three-grating atom interferometer \cite{Berman1997,Cronin2009} with an electric field gradient interaction region. We used the same apparatus for all three elements, so we can also report polarizability ratios with 0.08\% uncertainty because the sources of systematic uncertainty are largely correlated between our measurements of different atoms' polarizabilities. 
+We measured the static electric-dipole polarizabilities of K, Rb, and Cs atoms with 0.16\% uncertainty using a Mach-Zehnder three-grating atom interferometer \cite{Berman1997,Cronin2009} with an electric field gradient interaction region. We used the same apparatus for all three elements, so we can also report polarizability ratios with 0.08\% uncertainty because the sources of systematic uncertainty are largely correlated between our measurements of different atoms' polarizabilities. 
 
 We compare our measurements to
 \textit{ab initio} calculations of atomic polarizabilities and to polarizabilities deduced from studies of atomic lifetimes, Feshbach resonances, and photoassociation specroscopy. We also use our measurements to report the Cs $6p_{1/2}$ and $6p_{3/2}$ state lifetimes, Rb $5p_{1/2}$ and $5p_{3/2}$ state lifetimes, and K $4p_{1/2}$ and $4p_{3/2}$ state lifetimes and the associated principal electric dipole matrix elements, oscillator strengths, and line strengths. 
@@ -140,7 +137,7 @@ Then we use our measurements to report van der Waals $C_6$ coefficients,
 and we combine our measurements with measurements of 
 transition Stark shifts to report some excited state polarizabilities with better than 0.09\% uncertainty.
 
-Testing Cs atomic structure calculations by measuring $\acs$ is valuable for atomic parity non-conservation (PNC) research, which places constraints on beyond-the-standard-model physics. The coupling strength, $E_{\mathrm{PNC}}$, of $Z^0$-mediated interactions between the Cs valence electron and the neutrons in its nucleus can be written in terms of the electric dipole transition matrix elements and the nuclear weak charge parameter $Q_W$. Atomic structure calculations are needed to deduce a value of $Q_W$ from an $E_{\mathrm{PNC}}$ measurement \cite{Blundell1992,Cho1997,Derevianko2001,Porsev2009} to compare to the $Q_W$ predicted by the standard model \cite{Bouchiat1999,Dzuba2012}. Our measurement of $\acs$ tests the methods used to calculate the relevant matrix elements and provides a benchmark for the $\brakett{6s_{1/2}}{\hat{D}}{6p_{1/2}}$ matrix element, one of the terms in the expression for $E_{\mathrm{PNC}}$.
+Testing Cs atomic structure calculations by measuring $\acs$ is valuable for atomic parity non-conservation (PNC) research, which places constraints on beyond-the-standard-model physics. The PNC amplitude $E_{\mathrm{PNC}}$ due to $Z^0$-mediated interactions between the Cs valence electron and the neutrons in its nucleus can be written in terms of electric dipole transition matrix elements and the nuclear weak charge parameter $Q_W$. Atomic structure calculations are needed to deduce a value of $Q_W$ from an $E_{\mathrm{PNC}}$ measurement \cite{Blundell1992,Cho1997,Derevianko2001,Porsev2009} to compare to the $Q_W$ predicted by the standard model \cite{Bouchiat1999,Dzuba2012}. Our measurement of $\acs$ tests the methods used to calculate the relevant matrix elements and provides a benchmark for the $\brakett{6s_{1/2}}{\hat{D}}{6p_{1/2}}$ matrix element, one of the terms in the expression for $E_{\mathrm{PNC}}$.
 
 \begin{figure*}
 \includegraphics[width=\linewidth,keepaspectratio]{IFM_diagram2.pdf}
@@ -156,11 +153,11 @@ Due to the rotation of the Earth, the lab has a rotation rate about the vertical
 This is the first time that atom interferometry measurements of polarizability have been reported with smaller fractional uncertainty than the pioneering sodium polarizability measurement by Ekstrom \etalspace in 1995 \cite{Ekstrom1995}.
 This is also, to our knowledge, the first time atom interferometry has been used to measure Cs polarizability.
 Because it is challenging to resolve Cs atomic diffraction---our nanogratings diffract our Cs atom beams with only 20 $\mu$rad between diffraction orders---we designed an experiment 
-with an electric field gradient instead of a septum electrode, such as that used in \cite{Ekstrom1995,Miffre2006}.
+with an electric field gradient instead of a septum electrode, such as was used in \cite{Ekstrom1995,Miffre2006}.
 We also developed phase choppers \cite{Roberts2002,Roberts2004,Holmgren2011,Hromada2014} to measure our atom beams' velocity distributions instead of 
 using atom diffraction to study velocity distributions, as was done in \cite{Ekstrom1995,Holmgren2010}.
 These two innovations enable us to measure polarizabilities of heavy atoms such as Cs without resolving diffraction patterns. 
-Without the need to resolve diffraction, we can use larger collimating slits and a wider detector obtain data more quickly. These innovations also reduce some systematic errors that are related to beam alignment imperfections.
+Without the need to resolve diffraction, we can use larger collimating slits and a wider detector to obtain data more quickly. These innovations also reduce some systematic errors that are related to beam alignment imperfections.
 
 We improved the accuracy of our measurements compared to our previous work \cite{Holmgren2010} by redesigning the electrodes that apply phase shifts to our interferometer. 
 The new configuration of electrodes, two parallel, oppositely-charged cylindrical pillars, allows us to determine the distance between the atom beam and the virtual ground plane between the pillars with reduced statistical uncertainty. We reduced systematic error by making more accurate measurements of the width of the gap between the pillars, the pillars' radii, the voltages on the pillars, and the distance between the pillars and the first diffraction grating.
@@ -207,8 +204,8 @@ $R_{c2}$ & 785.5 $\mu$m \\
 
 A schematic diagram of the three-grating Mach-Zehnder atom beam interferometer we use to make our measurements is shown in \figref{IFMDiagram}. 
 A mixture of He and Ar gas carries Cs, Rb, or K vapor through a 50 $\mu$m nozzle to generate a supersonic atom beam \cite{Scoles,Ekstrom1993}. We adjust the carrier gas composition to change the beam's average velocity: a higher percentage of Ar results in a slower beam.
-The atom beam passes through two collimating slits and diffracts through three silicon nitride nanogratings, each with period $d_g = 100$ nm.
-The first two gratings manipulate the atoms' de Broglie waves to form a 100 nm period interference pattern at the position of the third grating. 
+The atom beam passes through two collimating slits and diffracts through three silicon nitride nanogratings, each with period $d_g = 99.90(0.5)$ nm \cite{Savas1995,Savas2003}.
+The first two gratings manipulate the atoms' de Broglie waves to form a 99.90 nm period interference pattern at the position of the third grating. 
 The method of observing interference fringes is described in detail in \cite{Kokorowski2001}: we scan the second grating in the $\pm x$ direction and observe the flux admitted through the third grating in order to determine the interference pattern's contrast and phase.
 We measure that transmitted atomic flux with a 100 $\mu$m wide platinum wire Langmuir-Taylor detector \cite{Delhuille2002}.
 
@@ -248,7 +245,7 @@ where the effective line charge density
 exists a distance $b = a\sqrt{1+2R/a}$ away from the ground plane. The parameter $a$ represents the distance between the ground plane and the closest cylinder edge, $R$ represents the pillars' radius, and the directions $\hat{x}$ and $\hat{z}$ are shown in \figref{EDiagram}.
 
 When atoms enter an electric field, their potential energy changes by $U_{\mathrm{Stark}} = -\frac{1}{2}\alpha|\vec{E}|^2$.
-Since $U_{\mathrm{Stark}} \approx -0.1$ $\mu$eV and $E_{\mathrm{kinetic}} \approx$ 1 eV in our experiment, we can use the WKB approximation along with the Residue Theorem to compute the total phase accumulated by an atom travelling through the field.
+Since $U_{\mathrm{Stark}} \approx -0.1$ $\mu$eV and $E_{\mathrm{kinetic}} \approx$ 1 eV for Cs in our experiment, we can use the WKB approximation along with the Residue Theorem to compute the total phase accumulated by an atom travelling through the field.
 We can also approximate that atoms travel parallel to the ground plane regardless of the angle at which they diffracted and their incident angle upon grating g1. Even though this approximation may be incorrect by up to $10^{-3}$ rad, such a discrepancy would only cause errors in the accumulated phases by factors of $10^{-6}$, which is insignificant for our experiment.
 Therefore, we represent the accumulated phase along one path for a component of an atomic de Broglie wave as
 \begin{align}
@@ -280,7 +277,7 @@ The atoms in the beam do not all have the same velocity, so the electric fields 
 We observe the average phase and contrast of an ensemble of atoms with velocity distribution $P(v)$. 
 We model $P(v)$ as a Gaussian distribution
 \begin{align}
-	P(v)dv = \frac{v_r}{v_0\sqrt{2\pi}}e^{-\frac{v_r^2(v-v_0)^2}{2v_0^2}}
+	P(v) = \frac{v_r}{v_0\sqrt{2\pi}}e^{-\frac{v_r^2(v-v_0)^2}{2v_0^2}}
 	\label{PvelGaussian}
 \end{align}
 where $v_0$ is the mean velocity and the velocity ratio $v_r = v_0/\sigma_v$ is a measure of the distribution's sharpness. It is worth noting that the velocity distribution for a supersonic atom beam is better described by a $v^3$-weighted Gaussian distribution
@@ -311,7 +308,7 @@ The phase and contrast we observe with our detector is that of an ensemble of at
 
 Uncertainties in $w_1$, $w_2$, $w_{\mathrm{det}}$, and $\Delta x_{\mathrm{det}}$ are more significant for beams that are physically wider. 
 In K beams, which have larger $\theta_d$ of $\approx 50$ $\mu$rad and wider velocity distributions 
-($v_0 \approx 1400$ m/s, $v_r \approx 14$, and therefore $\sigma_v \approx 150$ m/s), more of the lower-velocity atoms in the distribution miss the detector. Therefore, uncertainties in the aforementioned quantities have a higher bearing on how we model the average velocity of detected atoms.
+($v_0 \approx 2100$ m/s, $v_r \approx 14$, and therefore $\sigma_v \approx 150$ m/s), more of the lower-velocity atoms in the distribution miss the detector. Therefore, uncertainties in the aforementioned quantities have a higher bearing on how we model the average velocity of detected atoms.
 Ignoring this component of the analysis would cause a systematic increase in measured $v_0$ by 0.5\% and $v_r$ by 10\% for a typical K beam.
 
 Modeling the four interferometers shown in \figref{IFMDiagram}, rather than only the $k=\pm1$ interferometers, also improved our understanding of how likely it is for certain velocities to be detected. For K beams with wide velocity distributions, 
@@ -360,7 +357,7 @@ If the interferometer grating bars are significantly non-vertical, it becomes ne
 	\dphiaccel = \frac{\pi g\sin({\theta_g})(L_1+L_2)^2}{2d_g v^2}
 	\label{phiAccel}
 \end{align}
-where $\theta_g$ is the tilt of the grating bars with respect to vertical \cite{Greenberg2014,Trubko2015a}. 
+where $\theta_g$ is the tilt of the grating bars with respect to vertical \cite{Greenberg2014,Trubko2015a}. See \cite{Greenberg2014} for an explanation of how we measured $\theta_g$.
 Our interferometer's $|\theta_g|$ never exceeded 2.3 mrad. If we were to neglect this portion of the analysis, we would report $v_0$ incorrectly by up to 0.015\% and $v_r$ incorrectly by up to 0.25\%.
 
 \begin{figure}
@@ -372,7 +369,7 @@ A nominal value for $\theta_g$ is not listed because $\theta_g$ changed from $-2
 
 The uncertainty budget for $v_0$ and $v_r$ measurements is displayed in \figref{velError}. 
 The total statistical uncertainty in measured $v_0$ and $v_r$ is roughly 10 times larger than the total systematic uncertainty after about 15 minutes of data acquisition with the phase choppers.
-Because $v_0$ and $v_r$ drift over time, we measure the velocity distribution about every hour. 
+Because $v_0$ and $v_r$ drift over time, typically 3\% over the course of several hours, we measure the velocity distribution twice every hour. 
 
 
 
@@ -389,8 +386,10 @@ Additionally, Holmgren \etalspace \cite{Holmgren2010,Holmgren2013} demonstrated 
 
 To measure the Cs, Rb, and K polarizability, we use two parallel, oppositely charged, $1/2$-inch-diameter, stainless-steel pillars. The pillars are mounted to a single, rigid support structure so that a 3999.7 $\pm$ 1.0 $\mu$m gap exists between them. A motor moves the support structure in the $\pm x$ direction, and a length gauge monitors the structure's $x$ position. The length gauge measures displacements of the structure with 30 nm accuracy. 
 We begin a polarizability measurement with the assembly positioned such that the beam passes through the gap between the pillars near one of the edges.
-We take 25 sec of data with the electric field on and 25 sec with it off, and then move the pillars about 400 $\mu$m so that the beam approaches the other edge of the gap. We repeat this 9 times to 
-observe the phase shift $\Delta\Phi = \Phi_{\mathrm{pillars,on}} - \Phi_{\mathrm{ref}}$ applied by the pillars as a function $x_b$ (see an example in \figref{dPvMPExample}). 
+We take 25 sec of data with the electric field on and 25 sec with it off.
+We then move the pillars in nine 400 $\mu$m increments so that the beam approaches the other edge of the gap, taking 50 sec of data at each location.
+In doing so, we
+observe the phase shift $\Delta\Phi = \Phi_{\mathrm{pillars,on}} - \Phi_{\mathrm{ref}}$ applied by the pillars as a function of $x_b$ (see an example in \figref{dPvMPExample}). 
 We then repeat this sequence, moving the pillars in the opposite direction in order to minimize possible systematic errors associated with travelling in a certain direction.
 When the electric field is off, we observe the reference phase $\Phi_{\mathrm{ref}}$ and reference contrast $C_{\mathrm{ref}}$ given by 
 \begin{align}
@@ -440,7 +439,7 @@ We reduced the uncertainty in $V_{\mathrm{pillars}}$ to 0.05\% by independently 
 
 We measured $z_{g1,\mathrm{pillars}}$ to 1/4 mm accuracy. We placed rulers in the apparatus, after which three of us  would read the rulers both live and from photographs. We repeated this process for many longitudinal positions of the rulers to further reduce statistical error in the measurement. Finally, we compared the rulers we used with other rulers to verify that the ones we used were printed without significant systematic error. The value of $z_{g1,\mathrm{pillars}}$ we use in this analysis is the average of all those measurements. 
 
-We measured $a_{\mathrm{pillars}}$ to 0.5 $\mu$m accuracy by repeatedly scanning the pillars assembly across the beam and recording the positions at which each pillar blocked half of the atom beam. 
+We measured the width of the gap between the pillars, $2a_{\mathrm{pillars}}$, to 1 $\mu$m accuracy by repeatedly scanning the pillars assembly across the beam and recording the positions at which each pillar blocked half of the atom beam. 
 To verify that $a_{\mathrm{pillars}}$ did not change over time, we repeated this procedure many times throughout the months during which we acquired our data.
 
 %For K beams with wide velocity distributions, we would report polarizability about 2\% lower if we didn't take into account either the $k=\pm 2$ interferometers or the beam width and divergence.
@@ -477,18 +476,18 @@ $\Delta\Phi$ vs pillars position ($-x$ direction) & 8m 45s \\
 A typical sequence of measurements is shown in Table \ref{schedule}.
 We measure the velocity distribution twice between every four scans of the pillars across the beam, and calibrate the phase choppers between each pair of velocity measurements.
 
-We linearly interpolate between $v_0$ and $v_r$ measurements before and after each pillars scan to obtain those quantities at the time of that scan.
+We linearly interpolate between $v_0$ and $v_r$ measurements before and after each pillars scan to estimate those quantities at the time of that scan.
 Using cubic spline interpolation and Gaussian Process Regression to interpolate between $v_0$ and $v_r$ measurements changes our reported polarizabilities by no more than 0.001\%, which is small compared to our other uncertainties.
 
 \section{Results and discussion} \label{sectionResults}
 
-Table \ref{tableAbs} shows our measurement results for the K, Rb, and Cs atomic polarizabilities, $\ak$, $\arb$, and $\acs$.  The tabulated statistical uncertainties are the standard error of the mean for each result.  To get this statistical precision, we acquired over 90 hours of data, including 150 data sets similar to \figref{dPvMPExample} and 60 data sets similar to \figref{CvCFExample}.   The total systematic uncertainty for each measurement is also stated in Table \ref{tableAbs}, and a breakdown of the systematic uncertainty budget is summarized in \figref{polError}.  While the statistical uncertainties are typically 0.05\% for our measurements of polarizabilities, the systematic uncertainties are three to four times larger, and cause a total uncertainty of typically 0.19\% for each measurement.
+Table \ref{tableAbs} shows our measurement results for the K, Rb, and Cs atomic polarizabilities, $\ak$, $\arb$, and $\acs$.  The tabulated statistical uncertainties are the standard error of the mean for each result.  To get this statistical precision, we acquired over 90 hours of data, including 150 data sets similar to \figref{dPvMPExample} and 60 data sets similar to \figref{CvCFExample}.   The total systematic uncertainty for each measurement is also stated in Table \ref{tableAbs}, and a breakdown of the systematic uncertainty budget is summarized in \figref{polError}.  While the statistical uncertainties are typically 0.05\% for our measurements of polarizabilities, the systematic uncertainties are three to four times larger, and cause a total uncertainty of typically 0.16\% for each measurement.
 
 We report the ratios of polarizabilities $\acs/\ak$, $\acs/\arb$, and $\arb/\ak$ in Table \ref{tableRatio}.
 These ratios have uncertainties smaller than 0.08\% because we used the same apparatus for each direct measurement.
 For many of the sources of systematic uncertainty summarized in \figref{polError}, an error in one of those quantities would scale each direct polarizability measurement by the same amount. These correlated uncertainties, such as electrode geometry or grating pitch, do not contribute significantly to systematic errors in our measured polarizability ratios.
 However, uncertainties in $w_1$, $w_2$, $w_{\mathrm{det}}$, and $\Delta L$ affect our $\ak$, $\arb$, and $\acs$ measurements differently and therefore contribute a small amount to the final systematic uncertainties in the ratios. Even so, the ratios' systematic errors are much smaller than the statistical uncertainties. 
-We discuss the value of high-precision ratios for testing atomic theories in Section \ref{sectionComparisonsWithOtherExpTheory}, and we discuss the possibility of using such ratios to improve individual measurements of polarizability in the Outlook section (Section \ref{sectionOutlook}).
+We discuss the value of high-precision ratios for testing atomic theories in Section \ref{sectionComparisonsWithOtherExpTheory}, and we discuss the possibility of using such ratios to improve individual measurements of polarizability in Section \ref{sectionOutlook}).
 
 \begingroup
 \begin{table}
@@ -509,14 +508,14 @@ K  & $\polK$ \\
 
 \begingroup
 \begin{table}
-\caption{\label{tableRatio}Measured ratios of Cs, Rb, and K static, ground-state polarizabilities. The systematic errors in each ratio, which arise from the fact that the systematic errors in different measurements are not perfectly correlated, are negligible compared to the statistical errors.}
+\caption{\label{tableRatio}Measured ratios of Cs, Rb, and K static, ground-state polarizabilities. The systematic uncertainties in each ratio, which arise from the fact that the systematic errors in different measurements are not perfectly correlated, are negligible compared to the statistical uncertainties.}
 \begin{center}
 \begin{tabular}{lll}
 \hline\hline
 Ratio \ssspace \ssspace & Value(stat.) \sspace & Sys. Err. \\
 \hline
 $\acs/\ak$  & $\ratCsK$ & $3\cdot 10^{-5}$  \\
-$\acs/\arb$ & $\ratCsRb$ & $6\cdot 10^{-7}$ \\
+$\acs/\arb$ & $\ratCsRb$ & $7\cdot 10^{-7}$ \\
 $\arb/\ak$  & $\ratRbK$ & $2\cdot 10^{-5}$ \\
 \hline\hline
 \end{tabular}
@@ -537,7 +536,7 @@ Dolg1996,Patil1997,Lim1999,Derevianko1998,Magnier2002,Derevianko2001,
 Mitroy2003,Amini2003,Safronova2004,Lim2005,Iskrenova-Tchoukova2007,Safronova2008,
 Holmgren2010,Safronova2011,Nandy2012,Borschevsky2013,Safronova2013,Sahoo2013,Jiang2013,
 Safronova2013,Y.-B.2014}.
-The references are represented on the x-axis by the first three letters of the first author's last name followed by the year of publication. For the semi-empirical calculations: Reference Fue82 used semi-empirical pseudopotentials \cite{Fuentealba1999}, Pat97 used experimentally-determined energy levels \cite{Patil1997}, Der99 used experimentally-determined electric dipole transition matrix elements \cite{Derevianko1998}, and Yon14 used semi-empirical core polarization potentials \cite{Y.-B.2014}. Values in this plot from 1999 and later are also reported in Table \ref{tableComparisons} at the end of this paper.}
+The references are represented on the x-axis by the first three letters of the first author's last name followed by the year of publication. For the semi-empirical calculations: Reference Fue82 used semi-empirical pseudopotentials \cite{Fuentealba1999}, Pat97 used experimentally-determined energy levels \cite{Patil1997}, Der99 used experimentally-determined electric dipole transition matrix elements \cite{Derevianko1998}, and Mit03 and Yon14 used semi-empirical core polarization potentials \cite{Mitroy2003,Y.-B.2014}. Values in this plot from 1999 and later are also reported in Table \ref{tableComparisons} at the end of this paper.}
 \end{figure*}
 
 \begin{figure}
@@ -546,7 +545,7 @@ The references are represented on the x-axis by the first three letters of the f
 \includegraphics[width=0.620\linewidth,keepaspectratio,valign=t]{displayCsMisc.pdf}
 \includegraphics[width=0.365\linewidth,keepaspectratio,valign=t]{displayMiscLegend.pdf}
 \caption{\label{comparisonsMisc}(Color online) Comparisons of our lab's polarizability measurements (this work as well as \cite{Holmgren2010}) and Amini and Gould's $\acs$ measurement \cite{Amini2003} to polarizabilities derived from measured lifetimes and lifetime ratios,
-\cite{Young1994,Volz2006,Wang1997,Simsarian1998,Rafac1999,Falke2006a,Bouloufa2007,Rafac1998}, 
+\cite{Young1994,Volz2006,Wang1997,Wang1997a,Simsarian1998,Rafac1999,Falke2006a,Amiot2002,Bouloufa2007,Rafac1998}, 
 lifetimes inferred from photo-association data
 \cite{Gutterres2002,Gabbanini2000},
 theoretical $D^2$ values
@@ -556,11 +555,11 @@ and van der Waals $C_6$ measurements
 \end{figure}
 
 
-\figref{comparisons} and Table \ref{tableComparisons} compare our polarizability measurements with \textit{ab initio} calculations, semi-empirical calculations, and experimental measurements subsequent to and including Molof \etal's and Hall \etal's 1974 measurements \cite{Molof1974a,Hall1974}.  First, we will discuss the comparison to previous direct measurements.   Our K and Rb polarizability measurements have 4 times smaller uncertainty than our group's previously published direct measurements of $\ak$ and $\arb$ \cite{Holmgren2010}, and 10 times smaller uncertainty than the only other direct measurements of $\ak$ and $\arb$, which were made using the E-H gradient balance technique \cite{Molof1974a} and the E gradient deflection technique  \cite{Hall1974}.  We emphasize that our new measurements are independent of the results in \cite{Holmgren2010} because although we used the same atom interferometer machine, we used a different material nanograting g1, different electrodes with different geometry, a different atom beam velocity measurement technique, a different atom beam source nozzle, and a detector with a different width. Hence, the fact that our new and more precise measurements are consistent with the measurements in \cite{Holmgren2010,Molof1974a,Hall1974} should be regarded as an independent validation of each of these previous results.
+\figref{comparisons} and Table \ref{tableComparisons} compare our polarizability measurements with \textit{ab initio} calculations, semi-empirical calculations, and experimental measurements subsequent to and including Molof \etal's and Hall \etal's 1974 measurements \cite{Molof1974a,Hall1974}.  First, we will discuss the comparison to previous direct measurements.   Our K and Rb polarizability measurements have 3 times smaller uncertainty than our group's previously published direct measurements of $\ak$ and $\arb$ \cite{Holmgren2010}, and 10 times smaller uncertainty than the only other direct measurements of $\ak$ and $\arb$, which were made using the E-H gradient balance technique \cite{Molof1974a} and the E gradient deflection technique  \cite{Hall1974}.  We emphasize that our new measurements are independent of the results in \cite{Holmgren2010} because although we used the same atom interferometer machine, we used a different material nanograting g1, different electrodes with different geometry, a different atom beam velocity measurement technique, a different atom beam source nozzle, and a detector with a different width. Hence, the fact that our new and more precise measurements are consistent with the measurements in \cite{Holmgren2010,Molof1974a,Hall1974} should be regarded as an independent validation of each of these previous results.
 
 
-There is one other direct measurement of $\acs$ with uncertainty similar to (and slightly smaller than) ours.  Our direct $\acs$ measurement is 11 times more precise than the result reported using the E-H balance technique \cite{Molof1974a}, but 1.4 times less precise than Amini and Gould's 2003 measurement \cite{Amini2003} that was made using an atomic fountain apparatus.
-To our knowledge, Amini and Gould's work is the only polarizability measurement to date that has been accomplished using an atomic fountain, and it produced a remarkable improvement in precision by a factor of 15 as compared to the only previous direct measurements of $\acs$ \cite{Molof1974a,Hall1974}.  Furthermore, $\acs$ measurements can test some of the atomic structure theory that is used to interpret atomic parity non-conservation experiments as a way of constraining physics beyond the standard model \cite{Blundell1992,Cho1997,Derevianko2001,Porsev2009}. Thus, it is particularly important to validate this $\acs$ result in \cite{Amini2003}.  We find that our $\acs$ measurement is consistent with Amini and Gould's.  Our result $\acs = 59.45(11) \AAA^3$ deviates from their result of $\acs = 59.42(8) \AAA^3$ by 0.03 $\AAA^3$, which is insignificant.  Comparing our atom interferometer result with their fountain result serves as a cross-check for both methods.
+There is one other direct measurement of $\acs$ with uncertainty similar to (and slightly smaller than) ours.  Our direct $\acs$ measurement is 11 times more precise than the result reported using the E-H balance technique \cite{Molof1974a}, but 1.1 times less precise than Amini and Gould's 2003 measurement \cite{Amini2003} that was made using an atomic fountain apparatus.
+To our knowledge, Amini and Gould's work is the only polarizability measurement to date that has been accomplished using an atomic fountain, and it produced a remarkable improvement in precision by a factor of 15 as compared to the only previous direct measurements of $\acs$ \cite{Molof1974a,Hall1974}.  Furthermore, $\acs$ measurements can test some of the atomic structure theory that is used to interpret atomic parity non-conservation experiments as a way of constraining physics beyond the standard model \cite{Blundell1992,Cho1997,Derevianko2001,Porsev2009}. Thus, it is particularly important to validate this $\acs$ result in \cite{Amini2003}.  We find that our $\acs$ measurement is consistent with Amini and Gould's.  Our result $\acs = \polCsSysOnly \AAA^3$ deviates from their result of $\acs = 59.42(8) \AAA^3$ by 0.03 $\AAA^3$, which is insignificant.  Comparing our atom interferometer result with their fountain result serves as a cross-check for both methods.
 Both measurements also agree with $\acs$ values inferred from the atomic structure calculations by Derevianko and Porsev (2002) \cite{Derevianko2001} and Derevianko \etalspace (1999) \cite{Derevianko1998} for PNC analysis.
 
 
@@ -568,8 +567,8 @@ Both measurements also agree with $\acs$ values inferred from the atomic structu
 
 Most theoretical predictions for $\ak$, $\arb$, and $\acs$ deviate from each other and from our measurements significantly.   Out of 28 sets of theoretical predictions shown in \figref{comparisons}, only ten sets of predictions \cite{Derevianko1998,Derevianko2001,Iskrenova-Tchoukova2007,Safronova2008,Safronova2011,
 Nandy2012,Jiang2013,Sahoo2013,
-Safronova2013,Borschevsky2013} are consistent with our results within 3$\sigma$ (where $\sigma$ is the standard deviation of our measurement). Furthermore, the semi-empirical $\ak$, $\arb$, and $\acs$ values calculated in 1999 by Derevianko \etalspace are the only predictions that match our own $\ak$, $\arb$, and $\acs$ measurements
-to within 3$\sigma$. These predictions were made using measured lifetimes and energies.  This is an important point because there are now additional data on lifetimes, van der Waals $C_6$ measurements, and line strength ratios that can inform new semi-empirical predictions for polarizabilities that we discuss in Section \ref{sectionComparisonsWithDerived} and \figref{comparisonsMisc}.
+Safronova2013,Borschevsky2013} are consistent with our results within 3$\sigma$ (where $\sigma$ is the standard deviation of our measurement). Furthermore, the semi-empirical $\ak$, $\arb$, and $\acs$ values calculated in 1999 by Derevianko \etalspace \cite{Derevianko1998} are the only predictions that match all three of our own $\ak$, $\arb$, and $\acs$ measurements
+to within 3$\sigma$. These predictions \cite{Derevianko1998} were made using measured lifetimes and energies, and Derevianko and Porsev's later $\acs$ prediction \cite{Derevianko2001} was made using a measured van der Waals $C_6$ coefficient.  This is an important point because there are now additional data on lifetimes, van der Waals $C_6$ measurements, and line strength ratios that can inform new semi-empirical predictions for polarizabilities that we discuss in Section \ref{sectionComparisonsWithDerived} and \figref{comparisonsMisc}.
 
 
 
@@ -581,7 +580,7 @@ to within 3$\sigma$. These predictions were made using measured lifetimes and en
 
 \subsection{Comparisons with polarizabilities derived from other quantities} \label{sectionComparisonsWithDerived}
 
-Static polarizabilities can be related to electric dipole transition matrix elements, state lifetimes, oscillator strengths, and van der Waals coefficients. We will describe those relations and compare our $\alpha$ measurements to $\alpha$ values derived from recent calculations and high-precision measurements of those quantities; those comparisons are shown in \figref{comparisonsMisc} and Table \ref{tableComparisons}.
+Static polarizabilities can be related to electric dipole transition matrix elements, state lifetimes, oscillator strengths, and van der Waals coefficients. We will describe those relations and compare our $\alpha$ measurements to $\alpha$ values derived from recent calculations and high-precision measurements of those quantities. Those comparisons are shown in \figref{comparisonsMisc} and Table \ref{tableComparisons}.
 
 \begingroup
 \begin{table}
@@ -602,14 +601,14 @@ K  & 0.925(45) \cite{Safronova2006} & 2.000(4) & \cite{Holmgren2012} \\
 \end{table}
 \endgroup
 
-The polarizability (in volume units) of an atom in state $i$ can be written in terms of state lifetimes as
+The polarizability (in volume units) of an atom in state $i$ can be written in terms of Einstein A coefficients $A_{ij}$ as
 \begin{align}
 	\alpha_i = \frac{c^3}{2} \sum_{j\neq i} 
-	\frac{1}{\tau_{ji} \omega_{ij}^4} \frac{g_j}{g_i}
+	\frac{A_{ij}}{\omega_{ij}^4} \frac{g_j}{g_i}
 	+ \alpha_r
 	\label{polFromLifetimes}
 \end{align}
-where $\tau_{ki} = A_{ki}^{-1}$ is the lifetime associated with spontaneous decay from state $k$ to $i$ (the inverse of the Einstein $A_{ki}$ coefficient),  $\omega_{ik}$ is the transition frequency between states $i$ and $k$, and $g_n = 2J_n+1$ is the degeneracy factor for state $n$. In our case, state $i$ is the ground state. The residual polarizability $\alpha_r$ includes terms not explicitly included in the sum, the polarizability of the core electrons, and a correction accounting for correlations between core and valence electrons as described in several references including Trubko2015
+where $\omega_{ik}$ is the transition frequency between states $i$ and $k$, and $g_n = 2J_n+1$ is the degeneracy factor for state $n$. In our case, state $i$ is the ground state. The residual polarizability $\alpha_r$ includes terms not explicitly included in the sum, the polarizability of the core electrons, and a correction accounting for correlations between core and valence electrons as described in several references 
 \cite{Derevianko1998, Derevianko2001, Safronova2006}.  We will explicitly sum over the principal transitions from $ns_{1/2}$ to $np_{1/2}$ and $np_{3/2}$, where $n=6$ for Cs, $n=5$ for Rb, and $n=4$ for K, and we will include the other transitions in $\alpha_r$. We abbreviate the lifetimes associated with the principal transitions to $\tau_{1/2}$ and $\tau_{3/2}$. In our calculations, we use the transition wavelengths $\omega_{ik}$ from references
 \cite{Gerginov2005, Gerginov2006, Falke2006, Johansson1961}
 and the $\alpha_r$ values indicated in Table \ref{tableOmegaRes}.
@@ -643,33 +642,33 @@ $\delta_{\alpha}$, $\delta_{R}$, and $\delta_{\alpha_r}$ represent the uncertain
 \hline\hline
 Quantity & Atom & Value & $\delta_{\alpha}$ & $\delta_{R}$ & $\delta_{\alpha_r}$ & $\delta_{\mathrm{tot}}$ \\
 \hline
-$D_{1/2}$ 		& Cs & 4.510 & (4) & (1) & (1) & (4) \\
- 					& Rb & 4.241 & (4) & (3) & (4) & (7) \\
- 					& K  & 4.103 & (4) & (3) & (2) & (5) \\ \hline
-$D_{3/2}$ 		& Cs & 6.348 & (6) & (-) & (1) & (6) \\
- 					& Rb & 5.992 & (6) & (2) & (6) & (9) \\
- 					& K  & 5.803 & (6) & (2) & (3) & (7) \\ \hline
-$\tau_{1/2}$ (ns) 	& Cs & 34.74 & (7) & (1) & (1) & (7) \\
- 					& Rb & 27.57 & (5) & (4) & (5) & (9) \\
- 					& K  & 26.78 & (5) & (4) & (3) & (7) \\ \hline
-$\tau_{3/2}$ (ns) 	& Cs & 30.33 & (6) & (-) & (1) & (6) \\
- 					& Rb & 26.11 & (5) & (2) & (5) & (7) \\
- 					& K  & 26.42 & (5) & (2) & (3) & (6) \\ \hline
-$f_{1/2}$ 			& Cs & 0.3454 & (7) & (1) & (1) & (7) \\
- 					& Rb & 0.3437 & (7) & (5) & (7) & (11) \\
- 					& K  & 0.3320 & (6) & (4) & (4) & (8) \\ \hline
-$f_{3/2}$ 			& Cs & 0.7181 & (14) & (1) & (2) & (14) \\
- 					& Rb & 0.6990 & (14) & (5) & (14) & (20) \\
- 					& K  & 0.6671 & (13) & (4) & (7) & (15) \\ \hline
-$S_{1/2}$ 			& Cs & 20.34 & (4) & (1) & (1) & (4) \\
- 					& Rb & 17.99 & (4) & (3) & (3) & (6) \\
- 					& K  & 16.83 & (3) & (2) & (2) & (4) \\ \hline
-$S_{3/2}$ 			& Cs & 40.30 & (8) & (1) & (1) & (8) \\
- 					& Rb & 35.91 & (7) & (3) & (7) & (10) \\
- 					& K  & 33.68 & (6) & (2) & (4) & (8) \\ \hline
-$C_6$ 				& Cs & 6892 & (24) & (-) & (7) & (25) \\ 
-					& Rb & 4734 & (17) & (-) & (26) & (31) \\
- 					& K  & 3891 & (15) & (-) & (14) & (21) \\ \hline
+$D_{1/2}$ 		& Cs & 4.508 & (4) & (1) & (1) & (4) \\
+ 					& Rb & 4.239 & (4) & (3) & (4) & (6) \\
+ 					& K  & 4.101 & (3) & (3) & (2) & (5) \\ \hline
+$D_{3/2}$ 		& Cs & 6.345 & (5) & (-) & (1) & (5) \\
+ 					& Rb & 5.989 & (5) & (2) & (6) & (8) \\
+ 					& K  & 5.800 & (5) & (2) & (3) & (6) \\ \hline
+$\tau_{1/2}$ (ns) 	& Cs & 34.77 & (5) & (1) & (1) & (6) \\
+ 					& Rb & 27.60 & (5) & (4) & (5) & (8) \\
+ 					& K  & 26.81 & (4) & (4) & (3) & (6) \\ \hline
+$\tau_{3/2}$ (ns) 	& Cs & 30.37 & (5) & (-) & (1) & (5) \\
+ 					& Rb & 26.14 & (5) & (2) & (5) & (7) \\
+ 					& K  & 26.45 & (4) & (2) & (3) & (6) \\ \hline
+$f_{1/2}$ 			& Cs & 0.3450 & (5) & (1) & (1) & (6) \\
+ 					& Rb & 0.3433 & (6) & (5) & (7) & (10) \\
+ 					& K  & 0.3317 & (6) & (4) & (4) & (8) \\ \hline
+$f_{3/2}$ 			& Cs & 0.7174 & (11) & (1) & (2) & (12) \\
+ 					& Rb & 0.6982 & (12) & (5) & (14) & (19) \\
+ 					& K  & 0.6665 & (11) & (4) & (7) & (14) \\ \hline
+$S_{1/2}$ 			& Cs & 20.32 & (3) & (1) & (1) & (3) \\
+ 					& Rb & 17.97 & (3) & (3) & (3) & (5) \\
+ 					& K  & 16.82 & (3) & (2) & (2) & (4) \\ \hline
+$S_{3/2}$ 			& Cs & 40.26 & (6) & (1) & (1) & (6) \\
+ 					& Rb & 35.87 & (6) & (3) & (7) & (10) \\
+ 					& K  & 33.64 & (6) & (2) & (4) & (7) \\ \hline
+$C_6$ 				& Cs & 6879 & (20) & (-) & (7) & (21) \\ 
+					& Rb & 4719 & (15) & (-) & (26) & (30) \\
+ 					& K  & 3884 & (13) & (-) & (14) & (19) \\ \hline
 \hline
 \end{tabular}
 \end{center}
@@ -678,17 +677,18 @@ $C_6$ 				& Cs & 6892 & (24) & (-) & (7) & (25) \\
 
 
 
+
 \begingroup
 \begin{table}
-\caption{\label{tablePolExcited}Excited state polarizabilities $\alpha_{np_{1/2}}$, where $n = 6$ for Cs, $n = 5$ for Rb, and $n = 4$ for K. The values were calculated using our measurements and $\alpha_{np_{1/2}} - \alpha_{ns_{1/2}}$ measurements \cite{Hunter1991,Miller1994}.}
+\caption{\label{tableAbs}Excited state polarizabilities $\alpha_{np_{1/2}}$, where $n = 6$ for Cs, $n = 5$ for Rb, and $n = 4$ for K. The values were calculated using our measurements and $\alpha_{np_{1/2}} - \alpha_{ns_{1/2}}$ measurements \cite{Hunter1991,Miller1994}.}
 \begin{center}
-\begin{tabular}{l l l}
+\begin{tabular}{llll}
 \hline\hline
-Atom \sspace & $\alpha_{np_{1/2}}$ \\
+Atom \sspace & $\alpha_{np_{1/2}}$ ($\AAA^3$) \\
 \hline
-Cs & 196.87(11) \\
-Rb & 120.38(9) \\
-K  & 89.96(8) \\
+Cs & 196.81(9) \\
+Rb & 120.33(8) \\
+K  & 89.92(7) \\
 \hline\hline
 \end{tabular}
 \end{center}
@@ -698,7 +698,7 @@ K  & 89.96(8) \\
 
 \begingroup
 \begin{table*}
-\caption{\label{tableComparisons} Comparisons of directly measured, semi-empirical, and \abinit polarizabilities from 1999 and later. These values are also plotted in \figref{comparisons} and \figref{comparisonsMisc}.  Lines with $\alpha_r$ in the Method column were calculated using residual polarizabilities $\alpha_r$ in Table \ref{tableOmegaRes} \cite{Derevianko2001,Safronova2006}.  Ratios of polarizabilities $\arb/\ak$ = 1.097(5) from \cite{Holmgren2010} and $\acs/\arb$ = \ratCsRb, $\acs/\ak$ = \ratCsK, $\arb/\ak$ = \ratRbK \. from this work have been reported with smaller fractional uncertainties than the direct measurements listed in this table.}
+\caption{\label{tableComparisons} Comparisons of directly measured, semi-empirical, and \abinitspace polarizabilities from 1999 and later. These values are also plotted in \figref{comparisons} and \figref{comparisonsMisc}.  Lines with $\alpha_r$ in the Method column were calculated using residual polarizabilities $\alpha_r$ in Table \ref{tableOmegaRes} \cite{Derevianko2001,Safronova2006}.  Ratios of polarizabilities $\arb/\ak$ = 1.097(5) from \cite{Holmgren2010} and $\acs/\arb$ = \ratCsRb, $\acs/\ak$ = \ratCsK, $\arb/\ak$ = \ratRbK \. from this work have been reported with smaller fractional uncertainties than the direct measurements listed in this table. For the \abinitspace method acronyms: CCSD indicates the coupled-cluster approach with single and double excitations of the wavefunctions. The prefix R stands for ``relativistic" and the prefix L stands for ``linearized". The suffix T indicates that the authors used perturbative triple excitations of the wavefunctions. See \cite{Mitroy2010} for explanations of these various theoretical methods.}
 \begin{center}
 \begin{tabular}{l l l l l}
 \hline\hline
@@ -707,38 +707,47 @@ Reference(s) & Method & $\acs$ ($\AAA^3$) \,\,\,\,& $\arb$ ($\AAA^3$) \,\,\,\,& 
 %You94 \cite{Young1994} & $\tau_{1/2}$, $\tau_{3/2}$ meas. & 59.35(23) &  &  \\
 %Vol96 \cite{Volz2006} & $\tau_{1/2}$, $\tau_{3/2}$ meas. &  & 42.22(13) & 42.94(17) \\
 Raf99 \cite{Rafac1999,Derevianko2001}  & $\tau_{1/2}$, $\tau_{3/2}$ meas. + $\alpha_r$& 58.97(22) &  &  \\
-Der99 \cite{Derevianko1998} & \abinit & 59.50 & 46.89 & 42.84 \\
+Der99 \cite{Derevianko1998} & \abinit, RLCCSD & 59.50 & 46.89 & 42.84 \\ % verified
 Der99 \cite{Derevianko1998} & semi-empirical & 59.26(28) & 47.21(9) & 43.00(12) \\
 Leo00 \cite{Leo2000,Rafac1998,Derevianko2001}  & $C_6$ meas. + $\rcs$ meas. + thry + $\alpha_r$ \,\,& 59.49(25) & & \\
 Gut02 \cite{Gutterres2002,Gabbanini2000,Safronova2006} \,\, & $\tau_{1/2}$, $\tau_{3/2}$ from PA data + $\alpha_r$ & & 47.18(22) & \\
 Der02 \cite{Derevianko2001} & semi-empirical & 59.35(12) & & \\
 Mag02 \cite{Magnier2002} & \abinit & 64.31 & 49.64 & 44.75 \\
 Ami03 \cite{Amini2003} & direct $\acs$ meas. & 59.42(8) & & \\
-Mit03 \cite{Mitroy2003} & \abinit & & 46.78 & 42.97 \\
+Mit03 \cite{Mitroy2003} & semi-empirical & & 46.78 & 42.97 \\ % verified
 Chi04 \cite{Chin2004,Rafac1998,Derevianko2001} & $C_6$ meas. + $\rcs$ meas. + thry + $\alpha_r$ & 59.35(22) & & \\
 Saf04 \cite{Safronova2004} & \abinit & 59.00(13) & & \\
-Lim05 \cite{Lim2005} & \abinit & 58.55 & 47.29 & 43.08 \\
+Lim05 \cite{Lim2005} & \abinit, RCCSDT & 58.55 & 47.29 & 43.08 \\ % verified
 Fal06 \cite{Falke2006a,Safronova2006}  & $\tau_{1/2}$, $\tau_{3/2}$ meas. + $\alpha_r$& & & 43.02(8) \\
 Bou07 \cite{Bouloufa2007,Derevianko2001} & $\tau_{1/2}$, $\tau_{3/2}$ meas. + $\alpha_r$ & 59.31(82) & & \\
-Isk07 \cite{Iskrenova-Tchoukova2007} & \abinit & 59.04(10) & & \\
-Saf08 \cite{Safronova2008} & \abinit & & & 42.87 \\
+Isk07 \cite{Iskrenova-Tchoukova2007} & \abinit, RLCCSDT & 59.04(10) & & \\ % verified
+Saf08 \cite{Safronova2008} & \abinit, RLCCSDT & & & 42.87 \\ % verified
 Hol10 \cite{Holmgren2010} & direct $\arb$ and $\ak$ meas. & & 47.24(44) & 43.06(36) \\
 Hol10 \cite{Holmgren2010,Ekstrom1995} & ratio calibrated with $\alpha_{\text{Na}}$ & & 47.24(21) & 43.06(21) \\
 Por10 \cite{Porsev2010,Rafac1998,Derevianko2001} & \abinit $D_{1/2}^2$ + $\rcs$ meas. + $\alpha_r$ & 59.42(3) & & \\
-Saf11 \cite{Safronova2011} & \abinit & & 47.72(59) & \\
-Nan12 \cite{Nandy2012} & \abinit & & & 43.05(15) \\
-Bor13 \cite{Borschevsky2013} & \abinit & 59.13 & & \\
-Saf13 \cite{Safronova2013} & \abinit & & & 43.03(9) \\
-Sah13 \cite{Sahoo2013} & \abinit & & & 42.94(9) \\
+Saf11 \cite{Safronova2011} & \abinit, RCCSD & & 47.72(59) & \\ % gussed
+Nan12 \cite{Nandy2012} & \abinit, RCCSDT & & & 43.05(15) \\ % guessed
+Bor13 \cite{Borschevsky2013} & \abinit, RCCSDT & 59.13 & & \\ % guessed
+Saf13 \cite{Safronova2013} & \abinit, RLCCSDT & & & 43.03(9) \\ % guessed
+Sah13 \cite{Sahoo2013} & \abinit, RCCSDT & & & 42.94(9) \\ % guessed
 Jai13 \cite{Jiang2013} & semi-empirical & & & 42.98 \\
 Yon14 \cite{Y.-B.2014} & semi-empirical & 58.72 & 47.07 & 42.94 \\
 Pat15 \cite{Patterson2015,Rafac1998,Derevianko2001}  & $\tau_{3/2}$ meas. + $\rcs$ meas. + $\alpha_r$ & 59.21(13) & & \\
-This work & direct meas. & 59.45(11) & 47.44(9) & 42.97(8) \\
+This work & direct meas. & $\polCsSysOnly$ & $\polRbSysOnly$ & $\polKSysOnly$ \\
 \hline\hline
 \end{tabular}
 \end{center}
 \end{table*}
 \endgroup
+
+%CICP: configuration interaction with semi-empirical core potential
+%RCCSDT: coupled cluster method with single and double excitations of Dirac-Fock wavefunctions with partial triple contributions
+%RLCCSD: linearized coupled cluster method with single and double excitations of Dirac-Fock wavefunctions
+%RCCSDT: linearized coupled cluster method with single and double excitations of Dirac-Fock wavefunctions with partial triple contributions
+
+
+%CCSD(T): coupled cluster with single, double, and perturbative triple excitations
+%SD: single double, in which single and double excitations of DF (Dirac-Fock) wavefunctions are iterated to all orders
 
 We can also report a polarizability using $\rcs$ \cite{Rafac1998} in conjunction with Porsev \etal's 2010 calculation of $D_{1/2,\mathrm{Cs}}^2 = 20.334$ (in atomic units) \cite{Porsev2010}.
 We can write $\alpha_i$ in terms of the electric dipole transition matrix elements as
@@ -807,16 +816,16 @@ In the above equation (\ref{alphaNew}), $\alpha_p(i\omega)$ is the contribution 
 \end{align}
 
 
-Predictions of the parity-non-conserving coupling strength, $E_{\mathrm{PNC}}$, in Cs depends heavily on $D_{1/2}$.
-We note that our Cs $D_{1/2}$ value is consistent with the theoretical Cs $D_{1/2}$ calculated by Porsev \etalspace in 2010 for the purpose of interpreting PNC data \cite{Porsev2010}.
+Predictions of the parity-non-conserving amplitude, $E_{\mathrm{PNC}}$, in Cs depends heavily on $D_{1/2}$.
+We note that our Cs $D_{1/2}$ value is consistent with the theoretical Cs $D_{1/2}$ calculated by Porsev \etalspace in 2010 for the purpose of interpreting PNC data as a test of the standard model \cite{Porsev2010}.
 
 
-Finally, we use our measurements together with recent measurements of Cs, Rb, and K $\alpha_{np_{1/2}} - \alpha_{ns_{1/2}}$ \cite{Hunter1991,Miller1994} to report excited state polarizabilities $\alpha_{np_{1/2}}$ with better than 0.09\% uncertainty. 
+Finally, we use our measurements together with recent measurements of Cs, Rb, and K $\alpha_{np_{1/2}} - \alpha_{ns_{1/2}}$ \cite{Hunter1991,Miller1994} to report excited state polarizabilities $\alpha_{np_{1/2}}$ with better than 0.08\% uncertainty. 
 These results are shown in Table \ref{tablePolExcited} and serve as benchmark tests for calculations of dipole transition matrix elements for $p-d$ transitions.
 
 \section{Outlook} \label{sectionOutlook}
 
-We are currently exploring ways to measure the polarizability of Li and metastable He, the polarizabilities of which can be easily calculated. By measuring $\acs/\alpha_{\mathrm{He*}}$ or $\acs/\alpha_{\mathrm{Li}}$, we could report a direct measurement of $\acs$ with precision comparable to that of the ratios reported here for the benefit of PNC research. Such a measurement would also act as a calibration of the measurements presented in this work, because it would be independent of systematic errors that may affect our direct measurements.
+We are currently exploring ways to measure the polarizability of Li and metastable He, the polarizabilities of which can be accurately calculated. By measuring $\acs/\alpha_{\mathrm{He*}}$ or $\acs/\alpha_{\mathrm{Li}}$, we could report $\acs$ with precision comparable to that of the ratios reported here for the benefit of PNC research. Such a measurement would also act as a calibration of the measurements presented in this work, because it would be independent of systematic errors that may affect our direct measurements.
 
 We are also exploring electron-impact ionization schemes for atom detection, which would allow us to detect most atoms and molecules. Our Langmuir-Taylor detector only allows us to detect alkali metals and some alkaline-Earth metals \cite{Delhuille2002}. Installing an electron-impact ionization detector would allow us to broaden the scope of atom interferometry as a precision measurement tool. 
 
